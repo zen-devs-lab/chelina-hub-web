@@ -1,69 +1,148 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <title>Chelina Hub · Panel Maestro</title>
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Estilos base -->
-  <link rel="stylesheet" href="./assets/css/base.css" />
-  <link rel="stylesheet" href="./assets/css/theme.css" />
-  <link rel="stylesheet" href="./assets/css/cards.css" />
-  <link rel="stylesheet" href="./assets/css/aurora.css" />
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chelina Hub • Panel Maestro</title>
+  <meta name="description" content="Panel interno de Marketing + CRM (versión web) — Chelina Shop." />
+  <link rel="stylesheet" href="assets/css/hub.css" />
 </head>
+
 <body>
+  <!-- Fondo aurora (se controla por CSS) -->
+  <div class="bg-aurora" aria-hidden="true"></div>
+  <div class="bg-vignette" aria-hidden="true"></div>
 
-  <!-- Fondo aurora -->
-  <div class="aurora-bg"></div>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand__logo" aria-hidden="true">🧠</div>
+      <div class="brand__text">
+        <div class="brand__title">Chelina Hub</div>
+        <div class="brand__subtitle">Panel Maestro de Marketing y Clientes • Versión Boutique</div>
+      </div>
+    </div>
 
-  <!-- Contenedor principal -->
-  <main class="hub-container">
+    <div class="topbar__actions">
+      <button class="chip" type="button" title="Atajo: abrir buscador (demo)">
+        ⌘ K • Buscar
+      </button>
+      <a class="btn btn--primary" href="pages/compras.html">Registrar compra</a>
+    </div>
+  </header>
 
-    <!-- Header -->
-    <header class="hub-header">
-      <img src="./assets/img/logo.svg" alt="Chelina Shop" class="logo" />
-      <h1>Chelina Hub</h1>
-      <p>Panel Maestro de Marketing y Clientes</p>
-    </header>
+  <main class="container">
+    <!-- Buscador (placeholder hoy; luego lo conectamos) -->
+    <section class="hero card card--hero">
+      <div class="hero__left">
+        <h1>Mini Google Chelina</h1>
+        <p>
+          Búsqueda interna para encontrar clientes, compras, reportes y guías.
+          <span class="muted">(Hoy es demo visual; luego lo conectamos a data real.)</span>
+        </p>
 
-    <!-- Mini Google -->
-    <section class="hub-search">
-      <input type="text" placeholder="Buscar clientes, compras, reportes…" />
+        <div class="search">
+          <input id="hubSearch" type="search" placeholder="Escribe para buscar..." autocomplete="off" />
+          <button class="btn btn--ghost" type="button" id="btnSearch">Buscar</button>
+        </div>
+
+        <div class="hero__hint">
+          Tip: más adelante esto puede buscar en <b>Sheet</b> (Drive) o en un <b>JSON</b> exportado por tus scripts.
+        </div>
+      </div>
+
+      <div class="hero__right">
+        <div class="mini-kpis">
+          <div class="kpi">
+            <div class="kpi__label">Nuevos</div>
+            <div class="kpi__value">—</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi__label">Conversión</div>
+            <div class="kpi__value">—</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi__label">Fidelizados</div>
+            <div class="kpi__value">—</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi__label">Inactivos</div>
+            <div class="kpi__value">—</div>
+          </div>
+        </div>
+
+        <div class="mini-note">
+          <div class="mini-note__title">Estado del embudo</div>
+          <div class="mini-note__body">
+            Aquí luego mostramos totales “en caliente” como en tu Obsidian.
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Cards principales -->
-    <section class="hub-cards">
+    <!-- Grid principal (cards estilo Freepik, versión sobria) -->
+    <section class="grid">
+      <article class="card">
+        <h2>Accesos principales</h2>
+        <ul class="list">
+          <li><a href="pages/clientes.html">Clientes</a></li>
+          <li><a href="pages/compras.html">Compras</a></li>
+          <li><a href="pages/embudo.html">Embudo</a></li>
+          <li><a href="pages/reportes.html">Reportes</a></li>
+        </ul>
+        <div class="card__footer">
+          <span class="tag">Navegación</span>
+          <span class="muted">Estructura web espejo</span>
+        </div>
+      </article>
 
-      <div class="card">
-        <h3>Clientes</h3>
-        <p>Consulta y estado general</p>
-      </div>
+      <article class="card">
+        <h2>Bitácora del mes</h2>
+        <ul class="list">
+          <li><a href="#">Resumen diario</a></li>
+          <li><a href="#">Compras del mes</a></li>
+          <li><a href="#">Balance trimestral</a></li>
+          <li><a href="#">Por enviar (próximo)</a></li>
+        </ul>
+        <div class="card__footer">
+          <span class="tag">Operación</span>
+          <span class="muted">En progreso</span>
+        </div>
+      </article>
 
-      <div class="card">
-        <h3>Compras</h3>
-        <p>Histórico y registro</p>
-      </div>
+      <article class="card">
+        <h2>Descarga e imprime</h2>
+        <p class="muted">
+          Este botón luego puede descargar reportes en PDF/Excel generados por scripts.
+        </p>
+        <a class="btn btn--secondary" href="pages/reportes.html">Ir al panel de reportes</a>
+        <div class="card__footer">
+          <span class="tag">Export</span>
+          <span class="muted">Drive / Storage</span>
+        </div>
+      </article>
 
-      <div class="card">
-        <h3>Reportes</h3>
-        <p>Descarga e impresión</p>
-      </div>
-
-      <div class="card">
-        <h3>Embudo</h3>
-        <p>Estado y campañas</p>
-      </div>
-
+      <article class="card">
+        <h2>Tips & recomendaciones</h2>
+        <ul class="list">
+          <li><a href="#">Manual de uso del CRM</a></li>
+          <li><a href="#">Guía técnica de automatizaciones</a></li>
+          <li><a href="#">Glosario interno</a></li>
+          <li><a href="#">Atajos del equipo</a></li>
+        </ul>
+        <div class="card__footer">
+          <span class="tag">Knowledge</span>
+          <span class="muted">Documentación</span>
+        </div>
+      </article>
     </section>
 
+    <footer class="footer">
+      <span class="muted">Chelina Hub Web • versión inicial</span>
+      <span class="muted">—</span>
+      <span class="muted">Diseño: Aurora + Cards tipo Freepik</span>
+    </footer>
   </main>
 
-  <!-- Scripts -->
-  <script src="./assets/js/config.js"></script>
-  <script src="./assets/js/dashboard.js"></script>
-  <script src="./assets/js/search.js"></script>
-
+  <script src="assets/js/hub.js"></script>
 </body>
 </html>
