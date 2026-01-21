@@ -5,100 +5,297 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Chelina Hub • Clientes</title>
 
-  <!-- Usa tu CSS existente del Hub -->
+  <!-- Reusa tu CSS existente del Hub -->
   <link rel="stylesheet" href="../assets/css/hub.css" />
-  <!-- Si tienes otros, déjalos -->
-  <!-- <link rel="stylesheet" href="../assets/css/base.css" />
-  <link rel="stylesheet" href="../assets/css/cards.css" /> -->
 </head>
 
 <body>
-  <!-- Fondo aurora (si en index lo manejas por clases/divs, esto no estorba) -->
+  <!-- Fondo aurora (mismo patrón que tu index) -->
   <div class="bg-aurora" aria-hidden="true"></div>
   <div class="bg-vignette" aria-hidden="true"></div>
 
-  <!-- Header coherente con el Hub -->
+  <!-- 1) HERO / CONTEXTO RÁPIDO -->
   <header class="topbar">
     <div class="brand">
-      <div class="brand__logo" aria-hidden="true">🧠</div>
+      <div class="brand__logo" aria-hidden="true">👥</div>
       <div class="brand__text">
-        <div class="brand__title">Chelina Hub</div>
-        <div class="brand__subtitle">Clientes • Accesos principales</div>
+        <div class="brand__title">Clientes</div>
+        <div class="brand__subtitle">Gestión, seguimiento y segmentación del ecosistema Chelina</div>
       </div>
     </div>
 
     <div class="topbar__actions">
-      <a class="btn btn--ghost" href="../index.html">← Volver al Dashboard</a>
-      <a class="btn btn--primary" href="./compras.html">Registrar compra</a>
+      <a class="btn btn--ghost" href="../index.html">← Volver</a>
+      <a class="btn btn--primary" href="./compras.html">➕ Registrar compra</a>
     </div>
   </header>
 
   <main class="container">
-    <!-- Layout: 3 columnas como tu dashboard (hoy solo llenamos 1) -->
-    <section class="grid" style="grid-template-columns: 1fr 1fr 1fr;">
-      <!-- ✅ COLUMNA 1: ACCESOS PRINCIPALES (lo único que mostramos hoy) -->
+
+    <!-- Buscador interno (Mini Google filtrado a clientes) -->
+    <section class="card card--hero" style="margin-bottom:14px;">
+      <div class="hero__left">
+        <h1 style="margin:0 0 6px;">Mini Google • Clientes</h1>
+        <p style="margin:0 0 12px;" class="muted">
+          Busca por nombre, alias o ID. <span class="muted">(Hoy: demo visual. Luego: search-index.json)</span>
+        </p>
+
+        <div class="search">
+          <input id="qClientes" type="search" placeholder="Ej: Petronila / V-123 / @alias..." autocomplete="off" />
+          <button class="btn btn--ghost" type="button" id="btnBuscarClientes">Buscar</button>
+        </div>
+
+        <div class="hero__hint">
+          Tip: en la demo mostramos resultados simulados; después se conecta al índice JSON.
+        </div>
+      </div>
+
+      <div class="hero__right">
+        <div class="mini-note">
+          <div class="mini-note__title">Objetivo del panel</div>
+          <div class="mini-note__body">
+            Explorar y decidir: estado del ecosistema, recientes, segmentación y acciones rápidas.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2) KPI SNAPSHOT -->
+    <section class="card" style="padding:16px; margin-bottom:14px;">
+      <div style="display:flex; align-items:end; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+        <div>
+          <h2 style="margin:0 0 4px;">Estado rápido del sistema</h2>
+          <div class="muted" style="font-size:12.5px;">KPIs demo (luego alimentados por embudo.json)</div>
+        </div>
+        <div class="muted" style="font-size:12.5px;">Última actualización: —</div>
+      </div>
+
+      <div class="mini-kpis" style="margin-top:12px;">
+        <div class="kpi">
+          <div class="kpi__label">🟢 Clientes activos</div>
+          <div class="kpi__value">—</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__label">🟡 Nuevos (30 días)</div>
+          <div class="kpi__value">—</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__label">🔵 Fidelizados</div>
+          <div class="kpi__value">—</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__label">⚫ Inactivos</div>
+          <div class="kpi__value">—</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 + 4) BLOQUES PRINCIPALES: IZQ (RECENTES) + DER (EXPLORAR) -->
+    <section class="grid" style="grid-template-columns: 1.2fr .8fr; gap:14px;">
+
+      <!-- 3) IZQUIERDA: CLIENTES RECIENTES -->
       <article class="card">
-        <h2>Accesos principales</h2>
-        <p class="muted">Navegación rápida para operar clientes sin perderse.</p>
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+          <div>
+            <h2 style="margin:0 0 4px;">Clientes incorporados recientemente</h2>
+            <div class="muted" style="font-size:12.5px;">
+              Replica tu Dataview “últimos 7 días”. <span class="muted">(Hoy: demo visual)</span>
+            </div>
+          </div>
+          <span class="tag">Recientes</span>
+        </div>
 
-        <ul class="list">
-          <!-- Estos links apuntan a secciones internas futuras o a páginas dedicadas -->
-          <li><a href="#clientes-semana">Clientes de la semana</a></li>
-          <li><a href="#clientes-por-mes">Clientes por mes</a></li>
-          <li><a href="#clientes-por-fase">Clientes por fase (Embudo)</a></li>
-          <li><a href="#buscador-clientes">Mini Google (Clientes)</a></li>
-          <li><a href="../pages/reportes.html">Reportes de Clientes</a></li>
-        </ul>
+        <!-- Lista ligera tipo Freepik -->
+        <div style="margin-top:12px; display:grid; gap:10px;">
+          <!-- Item 1 -->
+          <div class="card" style="padding:12px; border-radius:16px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+              <div>
+                <div style="font-weight:850;">Petronila Gómez</div>
+                <div class="muted" style="font-size:12.5px;">ID: V-12345678 • Alias: —</div>
+              </div>
+              <div style="text-align:right;">
+                <div class="tag">Nuevo</div>
+                <div class="muted" style="font-size:12.5px; margin-top:4px;">04 May 2025</div>
+              </div>
+            </div>
+          </div>
 
-        <div class="card__footer">
-          <span class="tag">Clientes</span>
-          <span class="muted">Demo hoy</span>
+          <!-- Item 2 -->
+          <div class="card" style="padding:12px; border-radius:16px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+              <div>
+                <div style="font-weight:850;">María Fernanda R.</div>
+                <div class="muted" style="font-size:12.5px;">ID: V-20999888 • Alias: @mariaf</div>
+              </div>
+              <div style="text-align:right;">
+                <div class="tag">Conversión</div>
+                <div class="muted" style="font-size:12.5px; margin-top:4px;">02 May 2025</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="card" style="padding:12px; border-radius:16px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+              <div>
+                <div style="font-weight:850;">Andrea P.</div>
+                <div class="muted" style="font-size:12.5px;">ID: V-30111222 • Alias: —</div>
+              </div>
+              <div style="text-align:right;">
+                <div class="tag">Fidelizado</div>
+                <div class="muted" style="font-size:12.5px; margin-top:4px;">29 Abr 2025</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card__footer" style="margin-top:14px;">
+          <span class="muted">Click → detalle (futuro). Hoy: demo / placeholder.</span>
+          <a class="btn btn--secondary" href="#" id="btnVerMasRecientes">Ver más</a>
         </div>
       </article>
 
-      <!-- COLUMNA 2: placeholder silencioso -->
-      <article class="card" style="opacity:.55;">
-        <h2>Panel (próximo)</h2>
-        <p class="muted">
-          Aquí irá el listado reciente + KPIs + filtros. Hoy lo dejamos vacío para demo.
-        </p>
+      <!-- 4) DERECHA: EXPLORAR CLIENTES -->
+      <aside style="display:grid; gap:14px;">
+
+        <!-- 4A) Por fase del embudo -->
+        <article class="card">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+            <h2 style="margin:0;">Explorar por fase</h2>
+            <span class="tag">Embudo</span>
+          </div>
+          <div class="muted" style="font-size:12.5px; margin-top:6px;">
+            Tarjetas clicables (luego filtran listado).
+          </div>
+
+          <div style="margin-top:12px; display:grid; gap:10px;">
+            <a class="card" href="#" style="padding:12px; border-radius:16px; display:block;">
+              <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+                <strong>🟡 Nuevos</strong>
+                <span class="muted">Ver</span>
+              </div>
+              <div class="muted" style="font-size:12.5px; margin-top:4px;">Clientes con 1 compra</div>
+            </a>
+
+            <a class="card" href="#" style="padding:12px; border-radius:16px; display:block;">
+              <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+                <strong>🟠 Conversión</strong>
+                <span class="muted">Ver</span>
+              </div>
+              <div class="muted" style="font-size:12.5px; margin-top:4px;">Clientes con 2 compras</div>
+            </a>
+
+            <a class="card" href="#" style="padding:12px; border-radius:16px; display:block;">
+              <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+                <strong>🔵 Fidelizados</strong>
+                <span class="muted">Ver</span>
+              </div>
+              <div class="muted" style="font-size:12.5px; margin-top:4px;">3+ compras</div>
+            </a>
+
+            <a class="card" href="#" style="padding:12px; border-radius:16px; display:block;">
+              <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+                <strong>⚫ Inactivos</strong>
+                <span class="muted">Ver</span>
+              </div>
+              <div class="muted" style="font-size:12.5px; margin-top:4px;">Sin compras recientes</div>
+            </a>
+          </div>
+        </article>
+
+        <!-- 4B) Por periodo -->
+        <article class="card">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+            <h2 style="margin:0;">Explorar por periodo</h2>
+            <span class="tag">Cronología</span>
+          </div>
+
+          <div style="margin-top:12px; display:grid; gap:12px;">
+            <div class="card" style="padding:12px; border-radius:16px;">
+              <div style="font-weight:850;">📆 Por mes</div>
+              <ul class="list" style="margin-top:8px;">
+                <li><a href="#">Abril 2025</a></li>
+                <li><a href="#">Marzo 2025</a></li>
+                <li><a href="#">Febrero 2025</a></li>
+              </ul>
+            </div>
+
+            <div class="card" style="padding:12px; border-radius:16px;">
+              <div style="font-weight:850;">🗂️ Por semana</div>
+              <ul class="list" style="margin-top:8px;">
+                <li><a href="#">Semana 18 · 2025</a></li>
+                <li><a href="#">Semana 17 · 2025</a></li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+      </aside>
+    </section>
+
+    <!-- 5) BLOQUE INFERIOR: ACCIONES Y SOPORTE -->
+    <section class="grid" style="grid-template-columns: 1fr 1fr; gap:14px; margin-top:14px;">
+
+      <!-- 5A Acciones rápidas -->
+      <article class="card">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+          <h2 style="margin:0;">Acciones</h2>
+          <span class="tag">Operación</span>
+        </div>
+
+        <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn btn--primary" href="./compras.html">➕ Registrar nueva compra</a>
+          <a class="btn btn--secondary" href="#">📤 Exportar listado (futuro)</a>
+          <a class="btn btn--ghost" href="./reportes.html">📊 Ver reportes de clientes</a>
+        </div>
+
+        <div class="muted" style="font-size:12.5px; margin-top:12px;">
+          Exportación y reportes se conectarán a Drive/Sheets sin duplicar fichas.
+        </div>
       </article>
 
-      <!-- COLUMNA 3: placeholder silencioso -->
-      <article class="card" style="opacity:.55;">
-        <h2>Acciones (próximo)</h2>
-        <p class="muted">
-          Exportar, campañas por fase, y accesos a fichas detalladas.
-        </p>
+      <!-- 5B Tips / Guía -->
+      <article class="card">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+          <h2 style="margin:0;">Tips de uso</h2>
+          <span class="tag">Soporte</span>
+        </div>
+
+        <ul class="list" style="margin-top:12px;">
+          <li><a href="#">Cómo interpretar fases del embudo</a></li>
+          <li><a href="#">Qué hacer con clientes inactivos</a></li>
+          <li><a href="#">Buenas prácticas de seguimiento</a></li>
+        </ul>
+
+        <div class="muted" style="font-size:12.5px; margin-top:12px;">
+          Reduce fricción para Paola y mantiene el criterio operativo claro.
+        </div>
       </article>
-    </section>
 
-    <!-- Secciones ancla (vacías por ahora) para que los links funcionen -->
-    <section id="clientes-semana" class="card" style="margin-top:14px; opacity:.55;">
-      <h2>Clientes de la semana</h2>
-      <p class="muted">Se conectará a JSON/Sheets para mostrar últimos 7 días.</p>
-    </section>
-
-    <section id="clientes-por-mes" class="card" style="margin-top:14px; opacity:.55;">
-      <h2>Clientes por mes</h2>
-      <p class="muted">Navegación por mes/semana como tus portales cronológicos.</p>
-    </section>
-
-    <section id="clientes-por-fase" class="card" style="margin-top:14px; opacity:.55;">
-      <h2>Clientes por fase</h2>
-      <p class="muted">Tarjetas: Nuevos / Conversión / Fidelizados / Inactivos.</p>
-    </section>
-
-    <section id="buscador-clientes" class="card" style="margin-top:14px; opacity:.55;">
-      <h2>Mini Google (Clientes)</h2>
-      <p class="muted">Buscador interno (web) conectado a search-index.json.</p>
     </section>
 
     <footer class="footer" style="margin-top:18px;">
-      <span class="muted">Chelina Hub Web • Clientes — demo</span>
+      <span class="muted">Chelina Hub Web • Clientes</span>
       <span class="muted">—</span>
-      <span class="muted">Mismo estilo del Dashboard</span>
+      <span class="muted">Demo visual estilo Freepik (listas ligeras + cards)</span>
     </footer>
   </main>
+
+  <!-- JS mínimo demo (no rompe nada si luego lo quitas) -->
+  <script>
+    const toast = (msg) => alert(msg);
+
+    document.getElementById("btnBuscarClientes")?.addEventListener("click", () => {
+      const q = (document.getElementById("qClientes")?.value || "").trim();
+      if (!q) return toast("Escribe un nombre, alias o ID para buscar 🙂");
+      toast(`Demo: buscar "${q}" (luego se conecta a search-index.json)`);
+    });
+
+    document.getElementById("btnVerMasRecientes")?.addEventListener("click", (e) => {
+      e.preventDefault();
+      toast("Demo: ver más recientes (luego se conecta al JSON / Sheet).");
+    });
+  </script>
 </body>
 </html>
