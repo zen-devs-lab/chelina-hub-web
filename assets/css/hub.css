@@ -344,3 +344,98 @@ input, .search-input {
 }
 input::placeholder { color: rgba(255,255,255,0.55); }
 
+/* =========================
+   Chelina Hub — Freepik Glass (más legible)
+   ========================= */
+
+:root{
+  --txt: rgba(255,255,255,.92);
+  --muted: rgba(255,255,255,.70);
+
+  /* Cards más claras */
+  --card-bg: rgba(255,255,255,.10);
+  --card-bg-2: rgba(255,255,255,.13);
+
+  /* Bordes sutiles y elegantes */
+  --card-border: rgba(255,255,255,.16);
+  --line: rgba(255,255,255,.10);
+
+  /* Sombra suave (sin glow de discoteca) */
+  --shadow: 0 12px 35px rgba(0,0,0,.35);
+
+  /* Redondeo “boutique” */
+  --r-lg: 22px;
+  --r-md: 16px;
+}
+
+/* Fondo y legibilidad global */
+body{
+  color: var(--txt);
+}
+
+/* Extra “sangría” abajo (lo que notaste) */
+main{
+  padding-bottom: 64px; /* ajusta a gusto: 56–90 */
+}
+
+/* Cards base */
+.card,
+.panel,
+.widget{
+  background: linear-gradient(180deg, var(--card-bg-2), var(--card-bg));
+  border: 1px solid var(--card-border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* Títulos y texto dentro de cards */
+.card h1, .card h2, .card h3,
+.panel h1, .panel h2, .panel h3{
+  color: rgba(255,255,255,.95);
+}
+
+.card p, .panel p, .widget p,
+.card li, .panel li, .widget li{
+  color: var(--muted);
+}
+
+/* Separadores finos tipo Freepik */
+hr, .divider{
+  border: none;
+  height: 1px;
+  background: var(--line);
+  margin: 14px 0;
+}
+
+/* Hover MUY sutil (pro, no glow) */
+.card:hover,
+.panel:hover,
+.widget:hover{
+  transform: translateY(-2px);
+  transition: transform .18s ease;
+}
+
+/* Links dentro del panel: más visibles */
+a{
+  color: rgba(255,255,255,.88);
+  text-decoration: none;
+}
+a:hover{
+  text-decoration: underline;
+  color: rgba(255,255,255,.98);
+}
+
+/* Botones estilo “panel corporativo” */
+.btn{
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.10);
+  color: rgba(255,255,255,.92);
+  padding: 10px 14px;
+}
+.btn:hover{
+  background: rgba(255,255,255,.14);
+}
+
