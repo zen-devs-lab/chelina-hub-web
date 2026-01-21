@@ -5,63 +5,100 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Chelina Hub • Clientes</title>
 
+  <!-- Usa tu CSS existente del Hub -->
   <link rel="stylesheet" href="../assets/css/hub.css" />
+  <!-- Si tienes otros, déjalos -->
+  <!-- <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/cards.css" /> -->
 </head>
 
 <body>
-  <!-- Header simple reutilizable -->
-  <header class="topbar card" style="margin:20px; padding:16px 18px; display:flex; gap:14px; align-items:center; justify-content:space-between;">
-    <div style="display:flex; gap:12px; align-items:center;">
-      <img src="../assets/img/logo.png" alt="Chelina" style="height:34px; width:auto; opacity:.92;">
-      <div>
-        <div style="font-weight:700;">Clientes</div>
-        <div style="font-size:12px; color:rgba(255,255,255,.70);">Vista web espejo • pronto con data real</div>
+  <!-- Fondo aurora (si en index lo manejas por clases/divs, esto no estorba) -->
+  <div class="bg-aurora" aria-hidden="true"></div>
+  <div class="bg-vignette" aria-hidden="true"></div>
+
+  <!-- Header coherente con el Hub -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand__logo" aria-hidden="true">🧠</div>
+      <div class="brand__text">
+        <div class="brand__title">Chelina Hub</div>
+        <div class="brand__subtitle">Clientes • Accesos principales</div>
       </div>
     </div>
 
-    <nav style="display:flex; gap:10px; flex-wrap:wrap;">
-      <a class="btn" href="../index.html">Inicio</a>
-      <a class="btn" href="./compras.html">Compras</a>
-      <a class="btn" href="./embudos.html">Embudo</a>
-      <a class="btn" href="./envios.html">Envíos</a>
-      <a class="btn" href="./reportes.html">Reportes</a>
-    </nav>
+    <div class="topbar__actions">
+      <a class="btn btn--ghost" href="../index.html">← Volver al Dashboard</a>
+      <a class="btn btn--primary" href="./compras.html">Registrar compra</a>
+    </div>
   </header>
 
-  <main style="max-width:1200px; margin:0 auto; padding:0 20px 64px;">
-    <section class="card" style="padding:18px; margin-top:10px;">
-      <h2 style="margin:0 0 10px;">Listado de clientes</h2>
-      <p style="margin:0 0 14px;">
-        Aquí mostraremos clientes por estatus, tags, última compra y acceso rápido a ficha.
-      </p>
+  <main class="container">
+    <!-- Layout: 3 columnas como tu dashboard (hoy solo llenamos 1) -->
+    <section class="grid" style="grid-template-columns: 1fr 1fr 1fr;">
+      <!-- ✅ COLUMNA 1: ACCESOS PRINCIPALES (lo único que mostramos hoy) -->
+      <article class="card">
+        <h2>Accesos principales</h2>
+        <p class="muted">Navegación rápida para operar clientes sin perderse.</p>
 
-      <!-- Placeholder: luego lo llenamos con JSON -->
-      <div class="card" style="padding:14px; border-radius:16px; margin-top:12px;">
-        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
-          <div style="font-weight:600;">Demo visual</div>
-          <div style="color:rgba(255,255,255,.70); font-size:12px;">Conectaremos data cuando exportemos JSON</div>
-        </div>
-        <hr>
-        <div style="display:grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap:12px;">
-          <div class="card" style="padding:12px; border-radius:16px;">
-            <div style="font-weight:700;">Cliente</div>
-            <div style="color:rgba(255,255,255,.70);">Petronila Gómez</div>
-          </div>
-          <div class="card" style="padding:12px; border-radius:16px;">
-            <div style="font-weight:700;">Estatus</div>
-            <div style="color:rgba(255,255,255,.70);">Activo • Fidelizado</div>
-          </div>
-          <div class="card" style="padding:12px; border-radius:16px;">
-            <div style="font-weight:700;">Última compra</div>
-            <div style="color:rgba(255,255,255,.70);">CH-0049 • 2025-05-04</div>
-          </div>
-        </div>
-      </div>
+        <ul class="list">
+          <!-- Estos links apuntan a secciones internas futuras o a páginas dedicadas -->
+          <li><a href="#clientes-semana">Clientes de la semana</a></li>
+          <li><a href="#clientes-por-mes">Clientes por mes</a></li>
+          <li><a href="#clientes-por-fase">Clientes por fase (Embudo)</a></li>
+          <li><a href="#buscador-clientes">Mini Google (Clientes)</a></li>
+          <li><a href="../pages/reportes.html">Reportes de Clientes</a></li>
+        </ul>
 
-      <div style="height:10px;"></div>
-      <a class="btn" href="../index.html">← Volver al Dashboard</a>
+        <div class="card__footer">
+          <span class="tag">Clientes</span>
+          <span class="muted">Demo hoy</span>
+        </div>
+      </article>
+
+      <!-- COLUMNA 2: placeholder silencioso -->
+      <article class="card" style="opacity:.55;">
+        <h2>Panel (próximo)</h2>
+        <p class="muted">
+          Aquí irá el listado reciente + KPIs + filtros. Hoy lo dejamos vacío para demo.
+        </p>
+      </article>
+
+      <!-- COLUMNA 3: placeholder silencioso -->
+      <article class="card" style="opacity:.55;">
+        <h2>Acciones (próximo)</h2>
+        <p class="muted">
+          Exportar, campañas por fase, y accesos a fichas detalladas.
+        </p>
+      </article>
     </section>
-  </main>
 
+    <!-- Secciones ancla (vacías por ahora) para que los links funcionen -->
+    <section id="clientes-semana" class="card" style="margin-top:14px; opacity:.55;">
+      <h2>Clientes de la semana</h2>
+      <p class="muted">Se conectará a JSON/Sheets para mostrar últimos 7 días.</p>
+    </section>
+
+    <section id="clientes-por-mes" class="card" style="margin-top:14px; opacity:.55;">
+      <h2>Clientes por mes</h2>
+      <p class="muted">Navegación por mes/semana como tus portales cronológicos.</p>
+    </section>
+
+    <section id="clientes-por-fase" class="card" style="margin-top:14px; opacity:.55;">
+      <h2>Clientes por fase</h2>
+      <p class="muted">Tarjetas: Nuevos / Conversión / Fidelizados / Inactivos.</p>
+    </section>
+
+    <section id="buscador-clientes" class="card" style="margin-top:14px; opacity:.55;">
+      <h2>Mini Google (Clientes)</h2>
+      <p class="muted">Buscador interno (web) conectado a search-index.json.</p>
+    </section>
+
+    <footer class="footer" style="margin-top:18px;">
+      <span class="muted">Chelina Hub Web • Clientes — demo</span>
+      <span class="muted">—</span>
+      <span class="muted">Mismo estilo del Dashboard</span>
+    </footer>
+  </main>
 </body>
 </html>
