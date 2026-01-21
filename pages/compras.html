@@ -1,0 +1,421 @@
+<!-- /pages/compras.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chelina Hub • Compras</title>
+
+  <!-- CSS base del Hub -->
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/aurora.css">
+  <link rel="stylesheet" href="../assets/css/cards.css">
+  <link rel="stylesheet" href="../assets/css/theme.css">
+  <link rel="stylesheet" href="../assets/css/hub.css">
+
+  <meta name="color-scheme" content="dark">
+</head>
+
+<body class="hub">
+  <!-- Fondo aurora / textura -->
+  <div class="bg-aurora" aria-hidden="true"></div>
+
+  <main class="hub-shell">
+    <!-- Topbar -->
+    <header class="hub-topbar">
+      <div class="hub-brand">
+        <div class="hub-logo" aria-hidden="true">
+          <img src="../assets/img/logo.png" alt="Chelina Shop" />
+        </div>
+        <div class="hub-brand-txt">
+          <div class="hub-title">Compras</div>
+          <div class="hub-subtitle">Registro, seguimiento y análisis del flujo comercial Chelina</div>
+        </div>
+      </div>
+
+      <div class="hub-actions">
+        <a class="btn btn-ghost" href="../index.html" title="Volver al Panel Central">← Volver</a>
+        <a class="btn btn-primary" href="./compras.html#registrar" title="Registrar compra">＋ Registrar compra</a>
+      </div>
+    </header>
+
+    <!-- HERO: Mini Google Compras -->
+    <section class="card card-hero">
+      <div class="hero-grid">
+        <div class="hero-main">
+          <h1 class="hero-h1">Mini Google • Compras</h1>
+          <p class="hero-p">
+            Busca por <strong>ID de compra</strong>, <strong>cliente</strong> o <strong>producto</strong>.
+            <span class="muted">(Hoy: demo visual. Luego: search-index.json)</span>
+          </p>
+
+          <div class="hero-search">
+            <input id="searchInput" class="input" type="search" placeholder="Ej: CH-0049 / Petronila / Mary Jane…" autocomplete="off" />
+            <button id="searchBtn" class="btn btn-soft">Buscar</button>
+          </div>
+
+          <div class="hero-tip muted">
+            Tip: en la demo mostramos resultados simulados; después se conecta al índice JSON.
+          </div>
+
+          <!-- Resultados demo -->
+          <div id="searchResults" class="search-results" aria-live="polite"></div>
+        </div>
+
+        <aside class="hero-side">
+          <div class="mini-card">
+            <div class="mini-card-title">Objetivo del panel</div>
+            <div class="mini-card-text">
+              Ver el pulso operativo: recientes, análisis rápido, exploración por cronología y acciones.
+            </div>
+          </div>
+
+          <div class="mini-card">
+            <div class="mini-card-title">Estado del embudo (contexto)</div>
+            <div class="mini-card-text muted">
+              Aquí luego podemos mostrar totales “en caliente” (Nuevos/Conversión/Fidelizados/Inactivos).
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- SNAPSHOT: KPIs semana -->
+    <section class="card">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Estado rápido de compras</h2>
+          <div class="section-subtitle">KPIs demo (luego alimentados por dashboard.json / Registro Compra)</div>
+        </div>
+        <div class="section-meta muted">
+          Última actualización: <span id="lastUpdate">—</span>
+        </div>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">🛒 Compras esta semana</div>
+          <div class="kpi-value">—</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">💰 Monto total</div>
+          <div class="kpi-value">—</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">🌍 País líder</div>
+          <div class="kpi-value">—</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">⚡ Pago dominante</div>
+          <div class="kpi-value">—</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOQUE PRINCIPAL -->
+    <section class="grid-2">
+      <!-- Izquierda: compras recientes -->
+      <section class="card">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">Compras recientes</h2>
+            <div class="section-subtitle">Replica tu vista “últimos 7 días”. (Hoy: demo visual)</div>
+          </div>
+          <span class="pill">Recientes</span>
+        </div>
+
+        <div class="list-cards" id="recentPurchases">
+          <!-- Items demo -->
+          <article class="row-card" data-id="CH-0049" data-cliente="Petronila Gómez" data-producto="Tenis Bomb">
+            <div class="row-main">
+              <div class="row-title">CH-0049 · Petronila Gómez</div>
+              <div class="row-meta muted">Producto: Tenis Bomb · Monto: $25</div>
+            </div>
+            <div class="row-side">
+              <span class="badge badge-pay">Binance</span>
+              <div class="row-date muted">04 May 2025</div>
+            </div>
+          </article>
+
+          <article class="row-card" data-id="CH-0048" data-cliente="María F. R." data-producto="Mary Jane Reptil">
+            <div class="row-main">
+              <div class="row-title">CH-0048 · María F. R.</div>
+              <div class="row-meta muted">Producto: Mary Jane Reptil · Monto: $40</div>
+            </div>
+            <div class="row-side">
+              <span class="badge badge-pay">Zelle</span>
+              <div class="row-date muted">03 May 2025</div>
+            </div>
+          </article>
+
+          <article class="row-card" data-id="CH-0047" data-cliente="Andrea P." data-producto="Mocasín Boutique">
+            <div class="row-main">
+              <div class="row-title">CH-0047 · Andrea P.</div>
+              <div class="row-meta muted">Producto: Mocasín Boutique · Monto: $35</div>
+            </div>
+            <div class="row-side">
+              <span class="badge badge-pay">Pago Móvil</span>
+              <div class="row-date muted">29 Abr 2025</div>
+            </div>
+          </article>
+        </div>
+
+        <div class="section-footer">
+          <div class="muted">Click → detalle (futuro). Hoy: demo / placeholder.</div>
+          <button class="btn btn-soft" id="verMasBtn">Ver más</button>
+        </div>
+      </section>
+
+      <!-- Derecha: explorar por cronología + comparativas -->
+      <aside class="stack">
+        <section class="card">
+          <div class="section-head">
+            <div>
+              <h2 class="section-title">Explorar por período</h2>
+              <div class="section-subtitle">Tu cronología de carpetas traducida a UI</div>
+            </div>
+            <span class="pill">Cronología</span>
+          </div>
+
+          <div class="split-box">
+            <div class="split">
+              <div class="split-title">📆 Por mes</div>
+              <a class="split-link" href="#" data-toast="Abril 2025 (demo)">Abril 2025</a>
+              <a class="split-link" href="#" data-toast="Marzo 2025 (demo)">Marzo 2025</a>
+              <a class="split-link" href="#" data-toast="Febrero 2025 (demo)">Febrero 2025</a>
+            </div>
+
+            <div class="split">
+              <div class="split-title">📦 Por semana</div>
+              <a class="split-link" href="#" data-toast="Semana 18 · 2025 (demo)">Semana 18 · 2025</a>
+              <a class="split-link" href="#" data-toast="Semana 17 · 2025 (demo)">Semana 17 · 2025</a>
+              <a class="split-link" href="#" data-toast="Semana 16 · 2025 (demo)">Semana 16 · 2025</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="section-head">
+            <div>
+              <h2 class="section-title">Resumen comparativo (7 días)</h2>
+              <div class="section-subtitle">Mini panel por país / pago (luego data real)</div>
+            </div>
+            <span class="pill">Insights</span>
+          </div>
+
+          <div class="mini-table">
+            <div class="mini-row">
+              <div class="mini-left">🇻🇪 Venezuela</div>
+              <div class="mini-right muted">— compras</div>
+            </div>
+            <div class="mini-row">
+              <div class="mini-left">🇨🇴 Colombia</div>
+              <div class="mini-right muted">— compras</div>
+            </div>
+            <div class="mini-row">
+              <div class="mini-left">⚡ Método top</div>
+              <div class="mini-right muted">—</div>
+            </div>
+          </div>
+
+          <div class="muted" style="margin-top:10px">
+            Nota: el “comparativo por país” vive perfecto aquí; los rankings más pesados van en Reportes.
+          </div>
+        </section>
+      </aside>
+    </section>
+
+    <!-- BLOQUE INFERIOR: Acciones + Tips -->
+    <section class="grid-2">
+      <section class="card" id="registrar">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">Acciones</h2>
+            <div class="section-subtitle">Operación rápida</div>
+          </div>
+          <span class="pill">Operación</span>
+        </div>
+
+        <div class="actions-grid">
+          <a class="btn btn-primary" href="#" data-toast="Registrar nueva compra (demo)">＋ Registrar nueva compra</a>
+          <a class="btn btn-soft" href="#" data-toast="Exportar compras (futuro)">📤 Exportar compras (futuro)</a>
+          <a class="btn btn-soft" href="./reportes.html" title="Ir a reportes">📊 Ver reportes detallados</a>
+        </div>
+
+        <div class="muted" style="margin-top:10px">
+          Exportación y reportes se conectarán a Drive/Sheets sin duplicar archivos.
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">Tips de uso</h2>
+            <div class="section-subtitle">Soporte operativo</div>
+          </div>
+          <span class="pill">Soporte</span>
+        </div>
+
+        <ul class="tips">
+          <li>Revisa siempre <strong>método de pago</strong> y <strong>monto</strong> antes de cerrar semana.</li>
+          <li>Usa “Explorar por semana” para evitar duplicados y mantener el criterio del CRM.</li>
+          <li>Si una compra requiere gestión extra, márcala como “Por enviar” (fase futura).</li>
+        </ul>
+
+        <div class="muted">
+          Reduce fricción para el equipo y mantiene el criterio operativo claro.
+        </div>
+      </section>
+    </section>
+
+    <footer class="hub-footer muted">
+      Chelina Hub Web · Compras — Demo visual estilo Freepik (listas ligeras + cards)
+    </footer>
+  </main>
+
+  <!-- Toast simple -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    // ===== Utilidades UI =====
+    const toastEl = document.getElementById('toast');
+    function toast(msg) {
+      toastEl.textContent = msg;
+      toastEl.classList.add('show');
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2200);
+    }
+
+    // Links demo con toast
+    document.querySelectorAll('[data-toast]').forEach(el => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        toast(el.getAttribute('data-toast'));
+      });
+    });
+
+    // ===== Mini Google (demo) =====
+    const input = document.getElementById('searchInput');
+    const btn = document.getElementById('searchBtn');
+    const results = document.getElementById('searchResults');
+
+    function runSearch() {
+      const q = (input.value || '').trim().toLowerCase();
+      results.innerHTML = '';
+      if (!q) { toast('Escribe algo para buscar.'); return; }
+
+      // demo: filtra cards recientes
+      const cards = Array.from(document.querySelectorAll('#recentPurchases .row-card'));
+      const hits = cards.filter(c => {
+        const id = (c.dataset.id || '').toLowerCase();
+        const cli = (c.dataset.cliente || '').toLowerCase();
+        const pro = (c.dataset.producto || '').toLowerCase();
+        return id.includes(q) || cli.includes(q) || pro.includes(q);
+      });
+
+      const wrap = document.createElement('div');
+      wrap.className = 'search-wrap';
+
+      const title = document.createElement('div');
+      title.className = 'search-title';
+      title.textContent = `Resultados (demo): ${hits.length}`;
+      wrap.appendChild(title);
+
+      if (!hits.length) {
+        const empty = document.createElement('div');
+        empty.className = 'search-empty muted';
+        empty.textContent = 'Sin resultados en la demo. (Luego se conecta a search-index.json)';
+        wrap.appendChild(empty);
+      } else {
+        hits.slice(0, 6).forEach(h => {
+          const row = document.createElement('button');
+          row.className = 'search-row';
+          row.type = 'button';
+          row.innerHTML = `
+            <span class="search-id">${h.dataset.id}</span>
+            <span class="search-txt muted">${h.dataset.cliente} · ${h.dataset.producto}</span>
+          `;
+          row.addEventListener('click', () => toast(`Abrir compra ${h.dataset.id} (placeholder)`));
+          wrap.appendChild(row);
+        });
+      }
+
+      results.appendChild(wrap);
+    }
+
+    btn.addEventListener('click', runSearch);
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') runSearch();
+    });
+
+    // Ver más (demo)
+    document.getElementById('verMasBtn').addEventListener('click', () => {
+      toast('Cargar más compras (demo). Luego: paginación desde JSON/Sheet.');
+    });
+
+    // last update demo
+    document.getElementById('lastUpdate').textContent = '—';
+  </script>
+
+  <!-- Estilos mínimos extra si tu hub.css aún no los trae -->
+  <style>
+    /* Mantener coherencia sin pelear con tu CSS: solo helpers */
+    .hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:16px}
+    @media (max-width:980px){.hero-grid{grid-template-columns:1fr}}
+    .hero-h1{margin:0 0 6px 0;font-size:34px;letter-spacing:-.02em}
+    .hero-p{margin:0 0 14px 0}
+    .hero-search{display:flex;gap:10px;align-items:center}
+    .input{width:100%;padding:12px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.25);color:#fff}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.12);text-decoration:none;color:#fff;background:rgba(0,0,0,.18)}
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{background:rgba(255,120,170,.18);border-color:rgba(255,120,170,.25)}
+    .btn-ghost{background:rgba(0,0,0,.10)}
+    .btn-soft{background:rgba(255,255,255,.06)}
+    .card{border-radius:22px;border:1px solid rgba(255,255,255,.10);background:rgba(20,20,28,.55);backdrop-filter: blur(10px);padding:18px;margin:14px 0}
+    .card-hero{padding:18px}
+    .mini-card{border-radius:18px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.04);padding:14px;margin-bottom:12px}
+    .mini-card-title{font-weight:600;margin-bottom:6px}
+    .muted{opacity:.78}
+    .section-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}
+    .section-title{margin:0;font-size:16px;font-weight:650}
+    .section-subtitle{font-size:13px;opacity:.78;margin-top:4px}
+    .pill{font-size:12px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.04)}
+    .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    @media (max-width:980px){.kpi-grid{grid-template-columns:repeat(2,1fr)}}
+    .kpi-card{border-radius:18px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.04);padding:14px}
+    .kpi-label{font-size:13px;opacity:.85}
+    .kpi-value{margin-top:10px;font-size:22px;font-weight:700}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media (max-width:980px){.grid-2{grid-template-columns:1fr}}
+    .stack{display:flex;flex-direction:column;gap:14px}
+    .list-cards{display:flex;flex-direction:column;gap:10px}
+    .row-card{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:14px;border-radius:18px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.04);cursor:pointer}
+    .row-card:hover{transform:translateY(-1px)}
+    .row-title{font-weight:700}
+    .row-meta{font-size:13px;margin-top:3px}
+    .row-side{display:flex;flex-direction:column;gap:6px;align-items:flex-end}
+    .badge{font-size:12px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.18)}
+    .badge-pay{background:rgba(140,210,255,.10)}
+    .split-box{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media (max-width:980px){.split-box{grid-template-columns:1fr}}
+    .split{border-radius:18px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.04);padding:14px}
+    .split-title{font-weight:650;margin-bottom:8px}
+    .split-link{display:block;padding:8px 10px;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.12);text-decoration:none;color:#fff;margin-top:8px}
+    .split-link:hover{transform:translateY(-1px)}
+    .mini-table{display:flex;flex-direction:column;gap:10px}
+    .mini-row{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-radius:14px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.04)}
+    .actions-grid{display:flex;flex-wrap:wrap;gap:10px}
+    .tips{margin:0 0 10px 18px}
+    .hub-footer{padding:18px 0;text-align:center}
+    .toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(10,10,16,.72);backdrop-filter:blur(10px);opacity:0;pointer-events:none;transition:.2s}
+    .toast.show{opacity:1}
+    .search-results{margin-top:12px}
+    .search-wrap{border-radius:18px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.04);padding:12px}
+    .search-title{font-weight:650;margin-bottom:8px}
+    .search-row{width:100%;text-align:left;display:flex;justify-content:space-between;gap:10px;align-items:center;padding:10px 12px;border-radius:14px;border:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.12);color:#fff;cursor:pointer;margin-top:8px}
+    .search-row:hover{transform:translateY(-1px)}
+    .search-id{font-weight:700}
+    .search-empty{padding:10px 2px}
+  </style>
+</body>
+</html>
