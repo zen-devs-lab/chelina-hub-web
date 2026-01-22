@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chelina Hub • Nuevos Global</title>
+
+  <!-- Reusa tu CSS existente del Hub -->
+  <link rel="stylesheet" href="../assets/css/hub.css" />
+</head>
+
+<body>
+  <!-- Fondo aurora (mismo patrón que tu index/clientes) -->
+  <div class="bg-aurora" aria-hidden="true"></div>
+  <div class="bg-vignette" aria-hidden="true"></div>
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand__logo" aria-hidden="true">🟡</div>
+      <div class="brand__text">
+        <div class="brand__title">Nuevos Global</div>
+        <div class="brand__subtitle">Primera compra • Bienvenida, activación y conversión a segunda compra</div>
+      </div>
+    </div>
+
+    <div class="topbar__actions">
+      <a class="btn btn--ghost" href="./embudo.html">← Volver</a>
+      <a class="btn btn--secondary" href="./clientes.html">👥 Clientes</a>
+      <a class="btn btn--primary" href="./compras.html">🛒 Compras</a>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- HERO -->
+    <section class="card card--hero" style="margin-bottom:14px;">
+      <div class="hero__left">
+        <h1 style="margin:0 0 6px;">Embudo • Nuevos</h1>
+        <p class="muted" style="margin:0 0 12px;">
+          Esta fase representa la <strong>primera entrada del cliente</strong> al ecosistema Chelina Shop.
+          Aquí se gana (o se pierde) la segunda compra.
+          <span class="muted">(Vista web basada en tu MD estratégico.)</span>
+        </p>
+
+        <div class="search">
+          <input id="qNuevos" type="search" placeholder="Buscar cliente / canal / fecha… (demo)" autocomplete="off" />
+          <button class="btn btn--ghost" type="button" id="btnBuscarNuevos">Buscar</button>
+        </div>
+
+        <div class="hero__hint">
+          Tip: luego esto se conecta a <span class="muted">embudo.json</span> o un índice desde Sheets.
+        </div>
+      </div>
+
+      <div class="hero__right">
+        <div class="mini-note">
+          <div class="mini-note__title">Total acumulado</div>
+          <div class="mini-note__body">
+            <strong style="font-size:22px;">1</strong> clientes
+          </div>
+        </div>
+
+        <div class="mini-note" style="margin-top:10px;">
+          <div class="mini-note__title">Qué optimizar aquí</div>
+          <div class="mini-note__body muted">
+            Mensaje de bienvenida + claridad de producto + seguimiento corto (72h) = segunda compra.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOQUES PRINCIPALES -->
+    <section class="grid" style="grid-template-columns: 1.15fr .85fr; gap:14px;">
+
+      <!-- IZQUIERDA: Clientes recientes -->
+      <article class="card">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+          <div>
+            <h2 style="margin:0 0 4px;">🧍 Clientes recientes</h2>
+            <div class="muted" style="font-size:12.5px;">
+              Lista operativa (en tu MD aparece como enlaces). Aquí la mostramos como cards.
+            </div>
+          </div>
+          <span class="tag">Recientes</span>
+        </div>
+
+        <!-- INICIO: CLIENTES_NUEVOS (script puede reemplazar este bloque) -->
+        <div id="listaRecientesNuevos" style="margin-top:12px; display:grid; gap:10px;">
+          <!-- Demo item (placeholder) -->
+          <div class="card" style="padding:12px; border-radius:16px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+              <div>
+                <div style="font-weight:850;">F-confirmado-Activo</div>
+                <div class="muted" style="font-size:12.5px;">Fecha: 2025-05-01</div>
+              </div>
+              <div style="text-align:right;">
+                <span class="tag">Nuevo</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Nota: tu MD tiene repetidos; aquí lo dejamos listo para que el script lo pueble limpio -->
+          <div class="muted" style="font-size:12.5px; margin-top:4px;">
+            Nota: este bloque se alimentará con nombres reales (hoy es demo visual).
+          </div>
+        </div>
+        <!-- FIN: CLIENTES_NUEVOS -->
+
+        <div class="card__footer" style="margin-top:14px;">
+          <span class="muted">Click → detalle (futuro). Hoy: demo / placeholder.</span>
+          <a class="btn btn--secondary" href="#" id="btnVerMasNuevos">Ver más</a>
+        </div>
+      </article>
+
+      <!-- DERECHA: Resumen por canal -->
+      <aside style="display:grid; gap:14px;">
+
+        <!-- Tabla por canal (Dataview traducido) -->
+        <article class="card">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+            <h2 style="margin:0;">📢 Nuevos por canal</h2>
+            <span class="tag">Segmentación</span>
+          </div>
+
+          <div class="muted" style="font-size:12.5px; margin-top:6px;">
+            En Obsidian esto lo hace Dataview. En web lo dejamos listo para JSON/Sheets.
+          </div>
+
+          <!-- “Tabla” ligera Freepik-style -->
+          <div class="card" style="padding:12px; border-radius:16px; margin-top:12px;">
+            <div style="display:flex; justify-content:space-between; gap:10px; font-weight:850;">
+              <span>Cliente</span>
+              <span class="muted" style="font-weight:650;">Canal • Compras • Ingreso</span>
+            </div>
+
+            <div style="margin-top:10px; display:grid; gap:8px;" id="tablaCanalNuevos">
+              <div class="card" style="padding:10px 12px; border-radius:14px;">
+                <div style="display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+                  <strong>—</strong>
+                  <span class="muted" style="font-size:12.5px;">— • 1 • —</span>
+                </div>
+              </div>
+              <div class="muted" style="font-size:12.5px;">
+                Placeholder. Luego: cargar filas reales desde <span class="muted">embudo.json</span>.
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Contenidos sugeridos -->
+        <article class="card">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+            <h2 style="margin:0;">🎯 Contenidos sugeridos</h2>
+            <span class="tag">Marketing</span>
+          </div>
+
+          <div style="margin-top:12px; display:grid; gap:10px;">
+            <div class="card" style="padding:12px; border-radius:16px;">
+              <div style="font-weight:850;">Instagram</div>
+              <div class="muted" style="font-size:12.5px; margin-top:4px;">
+                Historias de bienvenida + testimonios
+              </div>
+            </div>
+
+            <div class="card" style="padding:12px; border-radius:16px;">
+              <div style="font-weight:850;">Web</div>
+              <div class="muted" style="font-size:12.5px; margin-top:4px;">
+                Pack de inicio + info clara sobre producto
+              </div>
+            </div>
+
+            <div class="card" style="padding:12px; border-radius:16px;">
+              <div style="font-weight:850;">TikTok</div>
+              <div class="muted" style="font-size:12.5px; margin-top:4px;">
+                Microtips + pruebas reales de producto
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </aside>
+    </section>
+
+    <!-- ACCIONES -->
+    <section class="grid" style="grid-template-columns: 1fr 1fr; gap:14px; margin-top:14px;">
+
+      <article class="card">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+          <h2 style="margin:0;">🚀 Acciones sugeridas</h2>
+          <span class="tag">Operación</span>
+        </div>
+
+        <ul class="list" style="margin-top:12px;">
+          <li><a href="#" data-toast="Concurso del mes (demo)">Participación automática en el concurso del mes (Live IG)</a></li>
+          <li><a href="#" data-toast="DM con storytelling (demo)">Mensaje directo con storytelling personalizado</a></li>
+          <li><a href="#" data-toast="VIP primerizos (demo)">Invitación a comunidad VIP de primerizos</a></li>
+        </ul>
+
+        <div class="muted" style="font-size:12.5px; margin-top:12px;">
+          Este bloque viene 1:1 de tu MD, pero presentado “premium y accionable”.
+        </div>
+      </article>
+
+      <article class="card">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+          <h2 style="margin:0;">🧠 Nota estratégica</h2>
+          <span class="tag">Estrategia</span>
+        </div>
+
+        <div class="muted" style="font-size:12.5px; margin-top:12px;">
+          “Nuevos” es donde se define el tono de relación. Si el cliente siente:
+          <strong>claridad + cuidado + rapidez</strong>, se acelera la segunda compra.
+        </div>
+
+        <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn btn--primary" href="./compras.html">🛒 Registrar compra</a>
+          <a class="btn btn--secondary" href="./conversion-global.html">🟠 Ver Conversión</a>
+          <a class="btn btn--ghost" href="./reportes.html">📊 Reportes</a>
+        </div>
+      </article>
+
+    </section>
+
+    <footer class="footer" style="margin-top:18px;">
+      <span class="muted">Chelina Hub Web • Nuevos Global</span>
+      <span class="muted">—</span>
+      <span class="muted">Basado en Nuevos_Global.md (Obsidian)</span>
+    </footer>
+  </main>
+
+  <!-- JS demo mínimo -->
+  <script>
+    const toast = (msg) => alert(msg);
+
+    document.querySelectorAll("[data-toast]")?.forEach(a => {
+      a.addEventListener("click", (e) => { e.preventDefault(); toast(a.getAttribute("data-toast")); });
+    });
+
+    document.getElementById("btnBuscarNuevos")?.addEventListener("click", () => {
+      const q = (document.getElementById("qNuevos")?.value || "").trim();
+      if (!q) return toast("Escribe algo para buscar 🙂");
+      toast(`Demo: buscar "${q}" (luego se conecta a JSON/Sheets)`);
+    });
+
+    document.getElementById("btnVerMasNuevos")?.addEventListener("click", (e) => {
+      e.preventDefault();
+      toast("Demo: ver más clientes nuevos (luego desde JSON/Sheet).");
+    });
+  </script>
+</body>
+</html>
