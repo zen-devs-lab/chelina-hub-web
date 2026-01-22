@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chelina Hub • Embudo</title>
+
+  <!-- Reusa tu CSS existente del Hub -->
+  <link rel="stylesheet" href="../assets/css/hub.css" />
+</head>
+
+<body>
+  <!-- Fondo aurora (mismo patrón que tu index) -->
+  <div class="bg-aurora" aria-hidden="true"></div>
+  <div class="bg-vignette" aria-hidden="true"></div>
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand__logo" aria-hidden="true">🧭</div>
+      <div class="brand__text">
+        <div class="brand__title">Embudo</div>
+        <div class="brand__subtitle">Visión global, movimiento por fases y decisiones operativas</div>
+      </div>
+    </div>
+
+    <div class="topbar__actions">
+      <a class="btn btn--ghost" href="../index.html">← Volver</a>
+      <a class="btn btn--primary" href="./clientes.html">👥 Clientes</a>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- HERO: Mini Google Embudo -->
+    <section class="card card--hero" style="margin-bottom:14px;">
+      <div class="hero__left">
+        <h1 style="margin:0 0 6px;">Mini Google • Embudo</h1>
+        <p style="margin:0 0 12px;" class="muted">
+          Busca por <strong>cliente</strong>, <strong>fase</strong> o <strong>ID</strong>.
+          <span class="muted">(Hoy: demo visual. Luego: embudo.json / search-index.json)</span>
+        </p>
+
+        <div class="search">
+          <input id="qEmbudo" type="search" placeholder="Ej: Petronila / Nuevos / V-123..." autocomplete="off" />
+          <button class="btn btn--ghost" type="button" id="btnBuscarEmbudo">Buscar</button>
+        </div>
+
+        <div class="hero__hint">
+          Tip: en la demo mostramos resultados simulados; luego se conecta al índice real.
+        </div>
+
+        <!-- Resultados demo -->
+        <div id="resultsEmbudo" class="card" style="margin-top:12px; padding:12px; border-radius:16px; display:none;">
+          <div style="font-weight:850;">Resultados (demo)</div>
+          <div class="muted" style="font-size:12.5px; margin-top:4px;">
+            Esto se llenará con data real (embudo.json). Por ahora, muestra coincidencias simuladas.
+          </div>
+          <div id="resultsList" style="margin-top:10px; display:grid; gap:8px;"></div>
+        </div>
+      </div>
+
+      <div class="hero__right">
+        <div class="mini-note">
+          <div class="mini-note__title">Objetivo del panel</div>
+          <div class="mini-note__body">
+            Tener una lectura rápida del embudo y decidir acciones: seguimiento, reactivación y foco comercial.
+          </div>
+        </div>
+
+        <div class="mini-note" style="margin-top:10px;">
+          <div class="mini-note__title">Regla de fases (referencia)</div>
+          <div class="mini-note__body muted">
+            Nuevo = 1 compra • Conversión = 2 compras • Fidelizado = 3+ compras • Inactivo = sin compras recientes.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KPI SNAPSHOT -->
+    <section class="card" style="padding:16px; margin-bottom:14px;">
+      <div style="display:flex; align-items:end; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+        <div>
+          <h2 style="margin:0 0 4px;">Estado rápido del embudo</h2>
+          <div class="muted" style="font-size:12.5px;">KPIs demo (luego alimentados por embudo.json)</div>
+        </div>
+        <div class="muted" style="font-size:12.5px;">Última actualización: —</div>
+      </div>
+
+      <div class="mini-kpis" style="margin-top:12px;">
+        <div class="kpi">
+          <div class="kpi__label">🟠 Atracción Global</div>
+          <div class="kpi__value">—</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__label">🟢 Nuevos Global</div>
+          <div class="kpi__value">—</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__label">🟡 Conversión Global</div>
+          <div class="kpi__value">—</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__label">🔵 Fidelizados Global</div>
+          <div class="kpi__value">—</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__label">⚫ Inactivos Global</div>
+          <div class="kpi__value">—</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOQUES PRINCIPALES -->
+    <section class="grid" style="grid-template-columns: 1.15fr .85fr; gap:14px;">
+
+      <!-- IZQUIERDA: resumen + últimos movimientos (demo) -->
+      <article class="card">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+          <div>
+            <h2 style="margin:0 0 4px;">Movimientos recientes</h2>
+            <div class="muted" style="font-size:12.5px;">
+              Cambios entre fases (hoy demo). Luego: log embudo / embudo.json
+            </div>
+          </div>
+          <span class="tag">Actividad</span>
+        </div>
+
+        <div style="margin-top:12px; display:grid; gap:10px;">
+          <!-- Items demo tipo “log” -->
+          <div class="card" style="padding:12px; border-radius:16px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+              <div>
+                <div style="font-weight:850;">Petronila Gómez</div>
+                <div class="muted" style="font-size:12.5px;">De: 🟢 Nuevos → A: 🟡 Conversión</div>
+              </div>
+              <div class="muted" style="font-size:12.5px;">Hoy</div>
+            </div>
+          </div>
+
+          <div class="card" style="padding:12px; border-radius:16px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+              <div>
+                <div style="font-weight:850;">María F. R.</div>
+                <div class="muted" style="font-size:12.5px;">De: 🟡 Conversión → A: 🔵 Fidelizados</div>
+              </div>
+              <div class="muted" style="font-size:12.5px;">Ayer</div>
+            </div>
+          </div>
+
+          <div class="card" style="padding:12px; border-radius:16px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+              <div>
+                <div style="font-weight:850;">Andrea P.</div>
+                <div class="muted" style="font-size:12.5px;">De: 🔵 Fidelizados → A: ⚫ Inactivos</div>
+              </div>
+              <div class="muted" style="font-size:12.5px;">Hace 7 días</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card__footer" style="margin-top:14px;">
+          <span class="muted">Esto luego se alimenta con el log y muestra “(Movido)” + “✅” automáticamente.</span>
+          <a class="btn btn--secondary" href="#" id="btnVerMasMov">Ver más</a>
+        </div>
+      </article>
+
+      <!-- DERECHA: explorar por fase + periodo -->
+      <aside style="display:grid; gap:14px;">
+
+        <!-- Explorar por fase -->
+        <article class="card">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+            <h2 style="margin:0;">Explorar por fase</h2>
+            <span class="tag">Embudo</span>
+          </div>
+          <div class="muted" style="font-size:12.5px; margin-top:6px;">
+            Acceso directo a cada tablero global.
+          </div>
+
+          <div style="margin-top:12px; display:grid; gap:10px;">
+            <a class="card" href="./atraccion-global.html" style="padding:12px; border-radius:16px; display:block;">
+              <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+                <strong>🟠 Atracción Global</strong>
+                <span class="muted">Ver</span>
+              </div>
+              <div class="muted" style="font-size:12.5px; margin-top:4px;">Entrada / interés / primeros contactos</div>
+            </a>
+
+            <a class="card" href="./nuevos-global.html" style="padding:12px; border-radius:16px; display:block;">
+              <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+                <strong>🟢 Nuevos Global</strong>
+                <span class="muted">Ver</span>
+              </div>
+              <div class="muted" style="font-size:12.5px; margin-top:4px;">Clientes con 1 compra</div>
+            </a>
+
+            <a class="card" href="./conversion-global.html" style="padding:12px; border-radius:16px; display:block;">
+              <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+                <strong>🟡 Conversión Global</strong>
+                <span class="muted">Ver</span>
+              </div>
+              <div class="muted" style="font-size:12.5px; margin-top:4px;">Clientes con 2 compras</div>
+            </a>
+
+            <a class="card" href="./fidelizados-global.html" style="padding:12px; border-radius:16px; display:block;">
+              <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+                <strong>🔵 Fidelizados Global</strong>
+                <span class="muted">Ver</span>
+              </div>
+              <div class="muted" style="font-size:12.5px; margin-top:4px;">3+ compras • foco retención</div>
+            </a>
+
+            <a class="card" href="./inactivos-global.html" style="padding:12px; border-radius:16px; display:block;">
+              <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+                <strong>⚫ Inactivos Global</strong>
+                <span class="muted">Ver</span>
+              </div>
+              <div class="muted" style="font-size:12.5px; margin-top:4px;">Sin compras recientes • reactivación</div>
+            </a>
+          </div>
+        </article>
+
+        <!-- Explorar por periodo -->
+        <article class="card">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+            <h2 style="margin:0;">Explorar por periodo</h2>
+            <span class="tag">Cronología</span>
+          </div>
+
+          <div style="margin-top:12px; display:grid; gap:12px;">
+            <div class="card" style="padding:12px; border-radius:16px;">
+              <div style="font-weight:850;">📆 Por mes</div>
+              <ul class="list" style="margin-top:8px;">
+                <li><a href="#" data-toast="Abril 2025 (demo)">Abril 2025</a></li>
+                <li><a href="#" data-toast="Marzo 2025 (demo)">Marzo 2025</a></li>
+                <li><a href="#" data-toast="Febrero 2025 (demo)">Febrero 2025</a></li>
+              </ul>
+            </div>
+
+            <div class="card" style="padding:12px; border-radius:16px;">
+              <div style="font-weight:850;">🗂️ Por semana</div>
+              <ul class="list" style="margin-top:8px;">
+                <li><a href="#" data-toast="Semana 18 · 2025 (demo)">Semana 18 · 2025</a></li>
+                <li><a href="#" data-toast="Semana 17 · 2025 (demo)">Semana 17 · 2025</a></li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+      </aside>
+    </section>
+
+    <!-- BLOQUE INFERIOR: acciones y soporte -->
+    <section class="grid" style="grid-template-columns: 1fr 1fr; gap:14px; margin-top:14px;">
+
+      <article class="card">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+          <h2 style="margin:0;">Acciones</h2>
+          <span class="tag">Operación</span>
+        </div>
+
+        <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn btn--primary" href="./compras.html">➕ Registrar compra</a>
+          <a class="btn btn--secondary" href="#" data-toast="Sincronizar embudo (demo)">🔄 Sincronizar embudo</a>
+          <a class="btn btn--ghost" href="./reportes.html">📊 Ir a Reportes</a>
+        </div>
+
+        <div class="muted" style="font-size:12.5px; margin-top:12px;">
+          La sincronización real luego se alimenta del Script/Sheet, sin romper la estructura de los MD.
+        </div>
+      </article>
+
+      <article class="card">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+          <h2 style="margin:0;">Tips de uso</h2>
+          <span class="tag">Soporte</span>
+        </div>
+
+        <ul class="list" style="margin-top:12px;">
+          <li><a href="#" data-toast="Tip: revisa cambios por semana (demo)">Revisa movimientos por semana antes de tomar decisiones</a></li>
+          <li><a href="#" data-toast="Tip: Inactivos (demo)">Inactivos: prioriza reactivación con incentivo y WhatsApp</a></li>
+          <li><a href="#" data-toast="Tip: Fidelizados (demo)">Fidelizados: retención + referidos + drops exclusivos</a></li>
+        </ul>
+
+        <div class="muted" style="font-size:12.5px; margin-top:12px;">
+          Reduce fricción para Paola y mantiene criterio operativo consistente.
+        </div>
+      </article>
+    </section>
+
+    <footer class="footer" style="margin-top:18px;">
+      <span class="muted">Chelina Hub Web • Embudo</span>
+      <span class="muted">—</span>
+      <span class="muted">Demo visual estilo Freepik (cards + navegación por fases)</span>
+    </footer>
+  </main>
+
+  <!-- JS mínimo demo -->
+  <script>
+    const toast = (msg) => alert(msg);
+
+    // Toasts en links demo
+    document.querySelectorAll("[data-toast]")?.forEach(a => {
+      a.addEventListener("click", (e) => { e.preventDefault(); toast(a.getAttribute("data-toast")); });
+    });
+
+    // Demo dataset para búsqueda rápida
+    const demoEmbudo = [
+      { nombre: "Petronila Gómez", id: "V-12345678", fase: "Conversión Global" },
+      { nombre: "María F. R.", id: "V-20999888", fase: "Fidelizados Global" },
+      { nombre: "Andrea P.", id: "V-30111222", fase: "Inactivos Global" },
+      { nombre: "Carmen L.", id: "V-44556677", fase: "Nuevos Global" },
+      { nombre: "Paola S.", id: "V-99887766", fase: "Atracción Global" }
+    ];
+
+    const q = document.getElementById("qEmbudo");
+    const btn = document.getElementById("btnBuscarEmbudo");
+    const resultsBox = document.getElementById("resultsEmbudo");
+    const resultsList = document.getElementById("resultsList");
+
+    function renderResults(items, query) {
+      resultsList.innerHTML = "";
+      if (!items.length) {
+        const empty = document.createElement("div");
+        empty.className = "muted";
+        empty.style.fontSize = "12.5px";
+        empty.textContent = `Sin resultados (demo) para "${query}".`;
+        resultsList.appendChild(empty);
+        return;
+      }
+
+      items.slice(0, 6).forEach(it => {
+        const row = document.createElement("a");
+        row.href = "#";
+        row.className = "card";
+        row.style.padding = "10px 12px";
+        row.style.borderRadius = "14px";
+        row.style.display = "block";
+        row.innerHTML = `
+          <div style="display:flex; justify-content:space-between; gap:10px; align-items:center;">
+            <strong>${it.nombre}</strong>
+            <span class="muted" style="font-size:12.5px;">${it.fase}</span>
+          </div>
+          <div class="muted" style="font-size:12.5px; margin-top:4px;">ID: ${it.id}</div>
+        `;
+        row.addEventListener("click", (e) => {
+          e.preventDefault();
+          toast(`Abrir "${it.nombre}" en ${it.fase} (placeholder)`);
+        });
+        resultsList.appendChild(row);
+      });
+    }
+
+    btn?.addEventListener("click", () => {
+      const query = (q?.value || "").trim().toLowerCase();
+      if (!query) return toast("Escribe cliente, fase o ID para buscar 🙂");
+
+      const hits = demoEmbudo.filter(it =>
+        (it.nombre || "").toLowerCase().includes(query) ||
+        (it.id || "").toLowerCase().includes(query) ||
+        (it.fase || "").toLowerCase().includes(query)
+      );
+
+      resultsBox.style.display = "block";
+      renderResults(hits, query);
+    });
+
+    q?.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") btn?.click();
+    });
+
+    // Ver más movimientos (demo)
+    document.getElementById("btnVerMasMov")?.addEventListener("click", (e) => {
+      e.preventDefault();
+      toast("Demo: cargar más movimientos (luego desde log embudo / JSON).");
+    });
+  </script>
+</body>
+</html>
