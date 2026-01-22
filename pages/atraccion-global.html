@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chelina Hub • Atracción Global</title>
+
+  <!-- Reusa tu CSS existente del Hub -->
+  <link rel="stylesheet" href="../assets/css/hub.css" />
+</head>
+
+<body>
+  <!-- Fondo aurora (mismo patrón que tu index/clientes) -->
+  <div class="bg-aurora" aria-hidden="true"></div>
+  <div class="bg-vignette" aria-hidden="true"></div>
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand__logo" aria-hidden="true">✨</div>
+      <div class="brand__text">
+        <div class="brand__title">Atracción Global</div>
+        <div class="brand__subtitle">Leads / personas atraídas • Aún sin compra • Alimentado por Sheet de Atracción</div>
+      </div>
+    </div>
+
+    <div class="topbar__actions">
+      <a class="btn btn--ghost" href="./embudo.html">← Volver</a>
+      <a class="btn btn--secondary" href="./clientes.html">👥 Clientes</a>
+      <a class="btn btn--primary" href="./compras.html">🛒 Compras</a>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- HERO -->
+    <section class="card card--hero" style="margin-bottom:14px;">
+      <div class="hero__left">
+        <h1 style="margin:0 0 6px;">Embudo • Atracción</h1>
+        <p class="muted" style="margin:0 0 12px;">
+          Aquí vive la <strong>audiencia interesada</strong> que aún no compra: mensajes, comentarios, leads,
+          visitas, recomendaciones, “me interesa” y conversaciones.
+          <span class="muted">(Hoy: demo visual. Luego: data real desde Sheet Atracción → JSON.)</span>
+        </p>
+
+        <div class="search">
+          <input id="qAtraccion" type="search" placeholder="Buscar lead / canal / ciudad / interés… (demo)" autocomplete="off" />
+          <button class="btn btn--ghost" type="button" id="btnBuscarAtraccion">Buscar</button>
+        </div>
+
+        <div class="hero__hint">
+          Tip: este panel NO depende de Registro Compra. Se conectará a <span class="muted">atraccion.json</span>
+          (generado desde la Sheet de Atracción).
+        </div>
+      </div>
+
+      <div class="hero__right">
+        <div class="mini-note">
+          <div class="mini-note__title">Total atraídos</div>
+          <div class="mini-note__body">
+            <strong style="font-size:22px;">—</strong> leads
+          </div>
+        </div>
+
+        <div class="mini-note" style="margin-top:10px;">
+          <div class="mini-note__title">Objetivo clave</div>
+          <div class="mini-note__body muted">
+            Convertir interés en compra: <strong>seguimiento</strong> + <strong>confianza</strong> + <strong>oferta correcta</strong>.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KPI SNAPSHOT -->
+    <section class="card" style="padding:16px; margin-bottom:14px;">
+      <div style="display:flex; align-items:end; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+        <div>
+          <h2 style="margin:0 0 4px;">Estado rápido del sistema</h2>
+          <div class="muted" style="font-size:12.5px;">KPIs demo (luego alimentados por Sheet Atracción)</div>
+        </div>
+        <div class="muted" style="font-size:12.5px;">Última actualización: —</div>
+      </div>
+
+      <div class="mini-kpis" style="margin-top:12px;">
+        <div class="kpi">
+          <div class="kpi__label">✨ Atraídos (total)</div>
+          <div class="kpi__value">—</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__label">📨 Pendientes por contactar</div>
+          <div class="kpi__value">—</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__label">🔥 Calientes (alta intención)</div>
+          <div class="kpi__value">—</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__label">📈 Conversión estimada</div>
+          <div class="kpi__value">—%</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOQUES PRINCIPALES -->
+    <section class="grid" style="grid-template-columns: 1.15fr .85fr; gap:14px;">
+
+      <!-- IZQUIERDA: Leads recientes / priorizados -->
+      <article class="card">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+          <div>
+            <h2 style="margin:0 0 4px;">🧲 Atraídos recientes / priorizados</h2>
+            <div class="muted" style="font-size:12.5px;">
+              Lista operativa (hoy placeholder). Luego: filas desde Sheet Atracción.
+            </div>
+          </div>
+          <span class="tag">Leads</span>
+        </div>
+
+        <!-- INICIO: LEADS_ATRACCION (script puede reemplazar este bloque) -->
+        <div id="listaAtraccion" style="margin-top:12px; display:grid; gap:10px;">
+
+          <!-- Demo item -->
+          <div class="card" style="padding:12px; border-radius:16px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+              <div>
+                <div style="font-weight:850;">—</div>
+                <div class="muted" style="font-size:12.5px;">
+                  Canal: — • Interés: — • Ciudad: —
+                </div>
+              </div>
+              <div style="text-align:right;">
+                <span class="tag">Atracción</span>
+                <div class="muted" style="font-size:12.5px; margin-top:4px;">Entrada: —</div>
+              </div>
+            </div>
+            <div class="muted" style="font-size:12.5px; margin-top:8px;">
+              Nota: aquí puede ir la última interacción (ej: “preguntó por talla 37”).
+            </div>
+          </div>
+
+          <div class="muted" style="font-size:12.5px;">
+            Placeholder. Luego se llena con data real del embudo (sin tocar MD).
+          </div>
+        </div>
+        <!-- FIN: LEADS_ATRACCION -->
+
+        <div class="card__footer" style="margin-top:14px;">
+          <span class="muted">Click → detalle (futuro). Hoy: demo / placeholder.</span>
+          <a class="btn btn--secondary" href="#" id="btnVerMasAtraccion">Ver más</a>
+        </div>
+      </article>
+
+      <!-- DERECHA: Segmentación + Acciones -->
+      <aside style="display:grid; gap:14px;">
+
+        <!-- Segmentación por canal -->
+        <article class="card">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+            <h2 style="margin:0;">📣 Segmentación por canal</h2>
+            <span class="tag">Insights</span>
+          </div>
+
+          <div class="muted" style="font-size:12.5px; margin-top:6px;">
+            Entra data desde la Sheet: canal, estado, intención, fecha, responsable.
+          </div>
+
+          <div style="margin-top:12px; display:grid; gap:10px;">
+            <div class="card" style="padding:12px; border-radius:16px;">
+              <div style="display:flex; justify-content:space-between; gap:10px;">
+                <strong>Instagram</strong>
+                <span class="muted">— leads</span>
+              </div>
+              <div class="muted" style="font-size:12.5px; margin-top:4px;">
+                DMs, comentarios, reacciones, historias
+              </div>
+            </div>
+
+            <div class="card" style="padding:12px; border-radius:16px;">
+              <div style="display:flex; justify-content:space-between; gap:10px;">
+                <strong>WhatsApp</strong>
+                <span class="muted">— leads</span>
+              </div>
+              <div class="muted" style="font-size:12.5px; margin-top:4px;">
+                Consultas por talla, precio, disponibilidad
+              </div>
+            </div>
+
+            <div class="card" style="padding:12px; border-radius:16px;">
+              <div style="display:flex; justify-content:space-between; gap:10px;">
+                <strong>Web / Forms</strong>
+                <span class="muted">— leads</span>
+              </div>
+              <div class="muted" style="font-size:12.5px; margin-top:4px;">
+                Formularios, landing pages, campañas
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Acciones sugeridas -->
+        <article class="card">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+            <h2 style="margin:0;">⚡ Acciones sugeridas</h2>
+            <span class="tag">Operación</span>
+          </div>
+
+          <ul class="list" style="margin-top:12px;">
+            <li><a href="#" data-toast="Acción (demo)">Contactar “pendientes” (prioridad 24h)</a></li>
+            <li><a href="#" data-toast="Acción (demo)">Enviar guía rápida: tallas + cuidados + entrega</a></li>
+            <li><a href="#" data-toast="Acción (demo)">Oferta suave: “reserva / aparta” para leads calientes</a></li>
+          </ul>
+
+          <div class="muted" style="font-size:12.5px; margin-top:12px;">
+            Este bloque es perfecto para el equipo: reduce improvisación y acelera cierre.
+          </div>
+        </article>
+
+      </aside>
+    </section>
+
+    <!-- BLOQUE INFERIOR: Flujo de trabajo + Nota estratégica -->
+    <section class="grid" style="grid-template-columns: 1fr 1fr; gap:14px; margin-top:14px;">
+
+      <article class="card">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+          <h2 style="margin:0;">🧩 Flujo recomendado</h2>
+          <span class="tag">Proceso</span>
+        </div>
+
+        <div style="margin-top:12px; display:grid; gap:10px;">
+          <div class="card" style="padding:12px; border-radius:16px;">
+            <div style="font-weight:850;">1) Captura</div>
+            <div class="muted" style="font-size:12.5px; margin-top:4px;">Lead entra por canal → se registra en Sheet Atracción.</div>
+          </div>
+          <div class="card" style="padding:12px; border-radius:16px;">
+            <div style="font-weight:850;">2) Calificación</div>
+            <div class="muted" style="font-size:12.5px; margin-top:4px;">Frío / Tibio / Caliente + motivo + producto.</div>
+          </div>
+          <div class="card" style="padding:12px; border-radius:16px;">
+            <div style="font-weight:850;">3) Seguimiento</div>
+            <div class="muted" style="font-size:12.5px; margin-top:4px;">Mensaje útil + propuesta clara + manejo de objeciones.</div>
+          </div>
+          <div class="card" style="padding:12px; border-radius:16px;">
+            <div style="font-weight:850;">4) Conversión</div>
+            <div class="muted" style="font-size:12.5px; margin-top:4px;">Cuando compra → pasa a “Nuevos” automáticamente.</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+          <h2 style="margin:0;">🧠 Nota estratégica</h2>
+          <span class="tag">Estrategia</span>
+        </div>
+
+        <div class="muted" style="font-size:12.5px; margin-top:12px;">
+          Atracción no es “acumular leads”: es <strong>curar intención</strong>.
+          Si el panel logra priorizar a quién escribirle primero, ya está ganando dinero.
+        </div>
+
+        <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn btn--primary" href="./compras.html">🛒 Registrar compra</a>
+          <a class="btn btn--secondary" href="./nuevos-global.html">🟡 Ver Nuevos</a>
+          <a class="btn btn--ghost" href="./reportes.html">📊 Reportes</a>
+        </div>
+
+        <div class="muted" style="font-size:12.5px; margin-top:12px;">
+          Conexión futura: Sheet Atracción → atraccion.json → widgets (KPIs + lista + canal).
+        </div>
+      </article>
+
+    </section>
+
+    <footer class="footer" style="margin-top:18px;">
+      <span class="muted">Chelina Hub Web • Atracción Global</span>
+      <span class="muted">—</span>
+      <span class="muted">Demo visual (luego: data real desde Sheet Atracción)</span>
+    </footer>
+  </main>
+
+  <!-- JS demo mínimo -->
+  <script>
+    const toast = (msg) => alert(msg);
+
+    document.querySelectorAll("[data-toast]")?.forEach(a => {
+      a.addEventListener("click", (e) => { e.preventDefault(); toast(a.getAttribute("data-toast")); });
+    });
+
+    document.getElementById("btnBuscarAtraccion")?.addEventListener("click", () => {
+      const q = (document.getElementById("qAtraccion")?.value || "").trim();
+      if (!q) return toast("Escribe algo para buscar 🙂");
+      toast(`Demo: buscar "${q}" (luego se conecta a atraccion.json / Sheet)`);
+    });
+
+    document.getElementById("btnVerMasAtraccion")?.addEventListener("click", (e) => {
+      e.preventDefault();
+      toast("Demo: ver más leads (luego desde atraccion.json / Sheet).");
+    });
+  </script>
+</body>
+</html>
