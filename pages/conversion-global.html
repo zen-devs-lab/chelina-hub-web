@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chelina Hub • Conversión Global</title>
+
+  <!-- Reusa tu CSS existente del Hub -->
+  <link rel="stylesheet" href="../assets/css/hub.css" />
+</head>
+
+<body>
+  <!-- Fondo aurora (mismo patrón que tu index/clientes) -->
+  <div class="bg-aurora" aria-hidden="true"></div>
+  <div class="bg-vignette" aria-hidden="true"></div>
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand__logo" aria-hidden="true">🟠</div>
+      <div class="brand__text">
+        <div class="brand__title">Conversión Global</div>
+        <div class="brand__subtitle">2 compras • Consolidación de confianza y camino a fidelización</div>
+      </div>
+    </div>
+
+    <div class="topbar__actions">
+      <a class="btn btn--ghost" href="./embudo.html">← Volver</a>
+      <a class="btn btn--secondary" href="./clientes.html">👥 Clientes</a>
+      <a class="btn btn--primary" href="./compras.html">🛒 Compras</a>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- HERO -->
+    <section class="card card--hero" style="margin-bottom:14px;">
+      <div class="hero__left">
+        <h1 style="margin:0 0 6px;">Embudo • Conversión</h1>
+        <p class="muted" style="margin:0 0 12px;">
+          Esta fase representa el momento en el que el cliente confirma que <strong>Chelina le queda bien</strong>:
+          no solo el zapato, también la experiencia.
+          <span class="muted">(Hoy: demo visual. Luego: data real desde Sheets/JSON.)</span>
+        </p>
+
+        <div class="search">
+          <input id="qConversion" type="search" placeholder="Buscar cliente / canal / producto… (demo)" autocomplete="off" />
+          <button class="btn btn--ghost" type="button" id="btnBuscarConversion">Buscar</button>
+        </div>
+
+        <div class="hero__hint">
+          Tip: luego se conecta a <span class="muted">embudo.json</span> o a un índice generado desde Registro Compra.
+        </div>
+      </div>
+
+      <div class="hero__right">
+        <div class="mini-note">
+          <div class="mini-note__title">Total acumulado</div>
+          <div class="mini-note__body">
+            <strong style="font-size:22px;">—</strong> clientes
+          </div>
+        </div>
+
+        <div class="mini-note" style="margin-top:10px;">
+          <div class="mini-note__title">Objetivo clave</div>
+          <div class="mini-note__body muted">
+            Convertir 2 compras en hábito: <strong>3ra compra</strong> + recomendación.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOQUES PRINCIPALES -->
+    <section class="grid" style="grid-template-columns: 1.15fr .85fr; gap:14px;">
+
+      <!-- IZQUIERDA: Clientes en Conversión -->
+      <article class="card">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+          <div>
+            <h2 style="margin:0 0 4px;">🧍 Clientes en Conversión</h2>
+            <div class="muted" style="font-size:12.5px;">
+              Lista operativa (en Obsidian viene por Dataview / bloque de embudo). Aquí: cards.
+            </div>
+          </div>
+          <span class="tag">Activos</span>
+        </div>
+
+        <!-- INICIO: CLIENTES_CONVERSION (script puede reemplazar este bloque) -->
+        <div id="listaConversion" style="margin-top:12px; display:grid; gap:10px;">
+          <!-- Demo items -->
+          <div class="card" style="padding:12px; border-radius:16px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+              <div>
+                <div style="font-weight:850;">—</div>
+                <div class="muted" style="font-size:12.5px;">ID: — • Canal: —</div>
+              </div>
+              <div style="text-align:right;">
+                <span class="tag">Conversión</span>
+                <div class="muted" style="font-size:12.5px; margin-top:4px;">Ingreso: —</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="muted" style="font-size:12.5px;">
+            Placeholder. Luego se llena con data real del embudo (sin tocar los MD).
+          </div>
+        </div>
+        <!-- FIN: CLIENTES_CONVERSION -->
+
+        <div class="card__footer" style="margin-top:14px;">
+          <span class="muted">Click → detalle (futuro). Hoy: demo / placeholder.</span>
+          <a class="btn btn--secondary" href="#" id="btnVerMasConversion">Ver más</a>
+        </div>
+      </article>
+
+      <!-- DERECHA: insights por canal + recomendaciones -->
+      <aside style="display:grid; gap:14px;">
+
+        <!-- Segmentación por canal (Dataview traducido) -->
+        <article class="card">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+            <h2 style="margin:0;">📢 Conversión por canal</h2>
+            <span class="tag">Segmentación</span>
+          </div>
+
+          <div class="muted" style="font-size:12.5px; margin-top:6px;">
+            En Obsidian esto lo hace Dataview. En web lo dejamos listo para JSON/Sheets.
+          </div>
+
+          <div class="card" style="padding:12px; border-radius:16px; margin-top:12px;">
+            <div style="display:flex; justify-content:space-between; gap:10px; font-weight:850;">
+              <span>Cliente</span>
+              <span class="muted" style="font-weight:650;">Canal • Compras • Ingreso</span>
+            </div>
+
+            <div style="margin-top:10px; display:grid; gap:8px;" id="tablaCanalConversion">
+              <div class="card" style="padding:10px 12px; border-radius:14px;">
+                <div style="display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+                  <strong>—</strong>
+                  <span class="muted" style="font-size:12.5px;">— • 2 • —</span>
+                </div>
+              </div>
+
+              <div class="muted" style="font-size:12.5px;">
+                Placeholder. Luego: cargar filas reales desde <span class="muted">embudo.json</span>.
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Contenidos sugeridos -->
+        <article class="card">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+            <h2 style="margin:0;">🎯 Contenidos sugeridos</h2>
+            <span class="tag">Marketing</span>
+          </div>
+
+          <div style="margin-top:12px; display:grid; gap:10px;">
+            <div class="card" style="padding:12px; border-radius:16px;">
+              <div style="font-weight:850;">Instagram</div>
+              <div class="muted" style="font-size:12.5px; margin-top:4px;">
+                Prueba social + “cómo combinar” + recordatorio suave de reposición
+              </div>
+            </div>
+
+            <div class="card" style="padding:12px; border-radius:16px;">
+              <div style="font-weight:850;">Web</div>
+              <div class="muted" style="font-size:12.5px; margin-top:4px;">
+                Recomendados según compra 1 + guía rápida de tallas/cuidados
+              </div>
+            </div>
+
+            <div class="card" style="padding:12px; border-radius:16px;">
+              <div style="font-weight:850;">WhatsApp</div>
+              <div class="muted" style="font-size:12.5px; margin-top:4px;">
+                Seguimiento proactivo: “¿Cómo te fue?” + propuesta de 2da opción
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </aside>
+    </section>
+
+    <!-- ACCIONES + ESTRATEGIA -->
+    <section class="grid" style="grid-template-columns: 1fr 1fr; gap:14px; margin-top:14px;">
+
+      <article class="card">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+          <h2 style="margin:0;">🚀 Acciones sugeridas</h2>
+          <span class="tag">Operación</span>
+        </div>
+
+        <ul class="list" style="margin-top:12px;">
+          <li><a href="#" data-toast="Acción (demo)">Propuesta de 3ra compra con “bundle” (2 productos complementarios)</a></li>
+          <li><a href="#" data-toast="Acción (demo)">Incentivo suave: envío preferente / cupón 48h</a></li>
+          <li><a href="#" data-toast="Acción (demo)">Solicitar mini testimonio (texto corto) para IG Stories</a></li>
+        </ul>
+
+        <div class="muted" style="font-size:12.5px; margin-top:12px;">
+          Este bloque se ajusta 1:1 cuando pegues tu contenido real del MD.
+        </div>
+      </article>
+
+      <article class="card">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+          <h2 style="margin:0;">🧠 Nota estratégica</h2>
+          <span class="tag">Estrategia</span>
+        </div>
+
+        <div class="muted" style="font-size:12.5px; margin-top:12px;">
+          Conversión es donde el cliente deja de “probar” y comienza a “preferir”.
+          El objetivo es diseñar un camino simple hacia <strong>Fidelizados</strong>, sin presión.
+        </div>
+
+        <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn btn--primary" href="./compras.html">🛒 Registrar compra</a>
+          <a class="btn btn--secondary" href="./fidelizados-global.html">🔵 Ver Fidelizados</a>
+          <a class="btn btn--ghost" href="./reportes.html">📊 Reportes</a>
+        </div>
+      </article>
+
+    </section>
+
+    <footer class="footer" style="margin-top:18px;">
+      <span class="muted">Chelina Hub Web • Conversión Global</span>
+      <span class="muted">—</span>
+      <span class="muted">Demo visual (luego: contenido exacto desde Conversion_Global.md)</span>
+    </footer>
+  </main>
+
+  <!-- JS demo mínimo -->
+  <script>
+    const toast = (msg) => alert(msg);
+
+    document.querySelectorAll("[data-toast]")?.forEach(a => {
+      a.addEventListener("click", (e) => { e.preventDefault(); toast(a.getAttribute("data-toast")); });
+    });
+
+    document.getElementById("btnBuscarConversion")?.addEventListener("click", () => {
+      const q = (document.getElementById("qConversion")?.value || "").trim();
+      if (!q) return toast("Escribe algo para buscar 🙂");
+      toast(`Demo: buscar "${q}" (luego se conecta a JSON/Sheets)`);
+    });
+
+    document.getElementById("btnVerMasConversion")?.addEventListener("click", (e) => {
+      e.preventDefault();
+      toast("Demo: ver más clientes en conversión (luego desde JSON/Sheet).");
+    });
+  </script>
+</body>
+</html>
