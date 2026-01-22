@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chelina Hub • Fidelizados Global</title>
+
+  <!-- Reusa tu CSS existente del Hub -->
+  <link rel="stylesheet" href="../assets/css/hub.css" />
+</head>
+
+<body>
+  <!-- Fondo aurora (mismo patrón que tu index/clientes) -->
+  <div class="bg-aurora" aria-hidden="true"></div>
+  <div class="bg-vignette" aria-hidden="true"></div>
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand__logo" aria-hidden="true">🔵</div>
+      <div class="brand__text">
+        <div class="brand__title">Fidelizados Global</div>
+        <div class="brand__subtitle">3+ compras • Retención, VIP, recurrencia y referidos</div>
+      </div>
+    </div>
+
+    <div class="topbar__actions">
+      <a class="btn btn--ghost" href="./embudo.html">← Volver</a>
+      <a class="btn btn--secondary" href="./clientes.html">👥 Clientes</a>
+      <a class="btn btn--primary" href="./compras.html">🛒 Compras</a>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- HERO -->
+    <section class="card card--hero" style="margin-bottom:14px;">
+      <div class="hero__left">
+        <h1 style="margin:0 0 6px;">Embudo • Fidelizados</h1>
+        <p class="muted" style="margin:0 0 12px;">
+          Esta fase es tu <strong>joya operativa</strong>: clientes que ya confían, compran y pueden convertirse
+          en <strong>promotoras</strong> de marca.
+          <span class="muted">(Hoy: demo visual. Luego: data real desde Sheets/JSON.)</span>
+        </p>
+
+        <div class="search">
+          <input id="qFidelizados" type="search" placeholder="Buscar cliente / método / producto… (demo)" autocomplete="off" />
+          <button class="btn btn--ghost" type="button" id="btnBuscarFidelizados">Buscar</button>
+        </div>
+
+        <div class="hero__hint">
+          Tip: luego se conecta al índice (embudo.json / search-index.json) generado desde Registro Compra.
+        </div>
+      </div>
+
+      <div class="hero__right">
+        <div class="mini-note">
+          <div class="mini-note__title">Total acumulado</div>
+          <div class="mini-note__body">
+            <strong style="font-size:22px;">—</strong> clientes
+          </div>
+        </div>
+
+        <div class="mini-note" style="margin-top:10px;">
+          <div class="mini-note__title">Objetivo clave</div>
+          <div class="mini-note__body muted">
+            Maximizar recurrencia y activar <strong>referidos</strong> sin perder el toque boutique.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOQUES PRINCIPALES -->
+    <section class="grid" style="grid-template-columns: 1.15fr .85fr; gap:14px;">
+
+      <!-- IZQUIERDA: Clientes Fidelizados -->
+      <article class="card">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+          <div>
+            <h2 style="margin:0 0 4px;">💎 Clientes fidelizados</h2>
+            <div class="muted" style="font-size:12.5px;">
+              Lista operativa (en Obsidian viene por Dataview / embudo). Aquí: cards limpias.
+            </div>
+          </div>
+          <span class="tag">VIP</span>
+        </div>
+
+        <!-- INICIO: CLIENTES_FIDELIZADOS (script puede reemplazar este bloque) -->
+        <div id="listaFidelizados" style="margin-top:12px; display:grid; gap:10px;">
+          <!-- Demo items -->
+          <div class="card" style="padding:12px; border-radius:16px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+              <div>
+                <div style="font-weight:850;">—</div>
+                <div class="muted" style="font-size:12.5px;">Compras: 3+ • Método top: —</div>
+              </div>
+              <div style="text-align:right;">
+                <span class="tag">Fidelizado</span>
+                <div class="muted" style="font-size:12.5px; margin-top:4px;">Última compra: —</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="muted" style="font-size:12.5px;">
+            Placeholder. Luego se llena con data real del embudo (sin tocar los MD).
+          </div>
+        </div>
+        <!-- FIN: CLIENTES_FIDELIZADOS -->
+
+        <div class="card__footer" style="margin-top:14px;">
+          <span class="muted">Click → detalle (futuro). Hoy: demo / placeholder.</span>
+          <a class="btn btn--secondary" href="#" id="btnVerMasFidelizados">Ver más</a>
+        </div>
+      </article>
+
+      <!-- DERECHA: insights + contenidos -->
+      <aside style="display:grid; gap:14px;">
+
+        <!-- Segmentación rápida -->
+        <article class="card">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+            <h2 style="margin:0;">📌 Segmentación rápida</h2>
+            <span class="tag">Insights</span>
+          </div>
+
+          <div class="muted" style="font-size:12.5px; margin-top:6px;">
+            Ideal para decidir campañas: método dominante, ticket promedio, categorías favoritas.
+          </div>
+
+          <div style="margin-top:12px; display:grid; gap:10px;">
+            <div class="card" style="padding:12px; border-radius:16px;">
+              <div style="display:flex; justify-content:space-between; gap:10px;">
+                <strong>⚡ Método top</strong>
+                <span class="muted">—</span>
+              </div>
+              <div class="muted" style="font-size:12.5px; margin-top:4px;">
+                (Luego: cálculo por frecuencia de métodos)
+              </div>
+            </div>
+
+            <div class="card" style="padding:12px; border-radius:16px;">
+              <div style="display:flex; justify-content:space-between; gap:10px;">
+                <strong>💰 Ticket promedio</strong>
+                <span class="muted">—</span>
+              </div>
+              <div class="muted" style="font-size:12.5px; margin-top:4px;">
+                (Luego: total acumulado / # compras)
+              </div>
+            </div>
+
+            <div class="card" style="padding:12px; border-radius:16px;">
+              <div style="display:flex; justify-content:space-between; gap:10px;">
+                <strong>👠 Categoría favorita</strong>
+                <span class="muted">—</span>
+              </div>
+              <div class="muted" style="font-size:12.5px; margin-top:4px;">
+                (Luego: productos más repetidos)
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Contenidos sugeridos -->
+        <article class="card">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+            <h2 style="margin:0;">🎯 Contenidos sugeridos</h2>
+            <span class="tag">Marketing</span>
+          </div>
+
+          <div style="margin-top:12px; display:grid; gap:10px;">
+            <div class="card" style="padding:12px; border-radius:16px;">
+              <div style="font-weight:850;">VIP / Comunidad</div>
+              <div class="muted" style="font-size:12.5px; margin-top:4px;">
+                Early access, preventas, modelos exclusivos, atención prioritaria.
+              </div>
+            </div>
+
+            <div class="card" style="padding:12px; border-radius:16px;">
+              <div style="font-weight:850;">Historias + UGC</div>
+              <div class="muted" style="font-size:12.5px; margin-top:4px;">
+                Clientes reales usando el producto (elegancia + comodidad).
+              </div>
+            </div>
+
+            <div class="card" style="padding:12px; border-radius:16px;">
+              <div style="font-weight:850;">Programa de referidos</div>
+              <div class="muted" style="font-size:12.5px; margin-top:4px;">
+                Incentivo boutique (no agresivo): regalo / envío / descuento por recomendación.
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </aside>
+    </section>
+
+    <!-- ACCIONES + ESTRATEGIA -->
+    <section class="grid" style="grid-template-columns: 1fr 1fr; gap:14px; margin-top:14px;">
+
+      <article class="card">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+          <h2 style="margin:0;">🚀 Acciones sugeridas</h2>
+          <span class="tag">Operación</span>
+        </div>
+
+        <ul class="list" style="margin-top:12px;">
+          <li><a href="#" data-toast="Acción (demo)">Invitación VIP: “acceso anticipado” a nuevos drops</a></li>
+          <li><a href="#" data-toast="Acción (demo)">Campaña de referidos: “trae a tu amiga” (sin spam)</a></li>
+          <li><a href="#" data-toast="Acción (demo)">Encuesta rápida: 2 preguntas para afinar preferencias</a></li>
+        </ul>
+
+        <div class="muted" style="font-size:12.5px; margin-top:12px;">
+          Cuando me pases tu MD real, este bloque queda 100% textual y alineado a tu estrategia.
+        </div>
+      </article>
+
+      <article class="card">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+          <h2 style="margin:0;">🧠 Nota estratégica</h2>
+          <span class="tag">Estrategia</span>
+        </div>
+
+        <div class="muted" style="font-size:12.5px; margin-top:12px;">
+          Fidelizados es donde se construye la marca en serio: aquí vive el <strong>LTV</strong>.
+          Cuídalos como “club boutique”, no como lista masiva.
+        </div>
+
+        <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn btn--primary" href="./compras.html">🛒 Registrar compra</a>
+          <a class="btn btn--secondary" href="./inactivos-global.html">⚫ Ver Inactivos</a>
+          <a class="btn btn--ghost" href="./reportes.html">📊 Reportes</a>
+        </div>
+      </article>
+
+    </section>
+
+    <footer class="footer" style="margin-top:18px;">
+      <span class="muted">Chelina Hub Web • Fidelizados Global</span>
+      <span class="muted">—</span>
+      <span class="muted">Demo visual (luego: contenido exacto desde Fidelizados_Global.md)</span>
+    </footer>
+  </main>
+
+  <!-- JS demo mínimo -->
+  <script>
+    const toast = (msg) => alert(msg);
+
+    document.querySelectorAll("[data-toast]")?.forEach(a => {
+      a.addEventListener("click", (e) => { e.preventDefault(); toast(a.getAttribute("data-toast")); });
+    });
+
+    document.getElementById("btnBuscarFidelizados")?.addEventListener("click", () => {
+      const q = (document.getElementById("qFidelizados")?.value || "").trim();
+      if (!q) return toast("Escribe algo para buscar 🙂");
+      toast(`Demo: buscar "${q}" (luego se conecta a JSON/Sheets)`);
+    });
+
+    document.getElementById("btnVerMasFidelizados")?.addEventListener("click", (e) => {
+      e.preventDefault();
+      toast("Demo: ver más fidelizados (luego desde JSON/Sheet).");
+    });
+  </script>
+</body>
+</html>
