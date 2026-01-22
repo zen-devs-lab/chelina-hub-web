@@ -1,409 +1,381 @@
-<!-- /pages/compras.html -->
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Chelina Hub • Compras</title>
 
-  <!-- CSS base del Hub -->
-  <link rel="stylesheet" href="../assets/css/base.css">
-  <link rel="stylesheet" href="../assets/css/aurora.css">
-  <link rel="stylesheet" href="../assets/css/cards.css">
-  <link rel="stylesheet" href="../assets/css/theme.css">
-  <link rel="stylesheet" href="../assets/css/hub.css">
-
-  <meta name="color-scheme" content="dark">
-
-  <!-- FIXES QUIRÚRGICOS (no pisan el HUB, solo corrigen logo + hover) -->
-  <style>
-    /* 1) LOGO: nunca más Godzilla */
-    .hub-logo{
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      overflow: hidden;
-      display: grid;
-      place-items: center;
-      flex: 0 0 44px;
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.10);
-    }
-    .hub-logo img{
-      width: 78%;
-      height: 78%;
-      object-fit: contain;
-      display: block;
-    }
-
-    /* 2) ESPACIADO: si algo “se pega”, aquí lo blindamos */
-    .hub-shell{
-      padding-top: 18px;
-      padding-left: 18px;
-      padding-right: 18px;
-    }
-
-    /* 3) HOVER: menos blanco, más premium */
-    .row-card:hover,
-    .split-link:hover,
-    .search-row:hover,
-    .btn:hover{
-      background: rgba(255,255,255,.06) !important;
-      border-color: rgba(255,255,255,.14) !important;
-      transform: translateY(-1px);
-    }
-
-    /* 4) Botón soft: evita “flash” blanco */
-    .btn-soft:hover{
-      background: rgba(255,255,255,.08) !important;
-    }
-
-    /* 5) Inputs más sobrios */
-    .input:focus{
-      outline: none;
-      border-color: rgba(255,255,255,.18);
-      box-shadow: 0 0 0 3px rgba(255,255,255,.06);
-    }
-  </style>
+  <!-- Reusa tu CSS existente del Hub (igual que Clientes) -->
+  <link rel="stylesheet" href="../assets/css/hub.css" />
 </head>
 
-<body class="hub">
-  <!-- Fondo aurora / textura -->
+<body>
+  <!-- Fondo aurora (mismo patrón que tu index / clientes) -->
   <div class="bg-aurora" aria-hidden="true"></div>
+  <div class="bg-vignette" aria-hidden="true"></div>
 
-  <main class="hub-shell">
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand__logo" aria-hidden="true">🧾</div>
+      <div class="brand__text">
+        <div class="brand__title">Compras</div>
+        <div class="brand__subtitle">Registro, seguimiento y análisis del flujo comercial Chelina</div>
+      </div>
+    </div>
 
-    <!-- Topbar -->
-    <header class="hub-topbar">
-      <div class="hub-brand">
-        <div class="hub-logo" aria-hidden="true">
-          <img src="../assets/img/logo.png" alt="Chelina Shop" />
+    <div class="topbar__actions">
+      <a class="btn btn--ghost" href="../index.html">← Volver</a>
+      <a class="btn btn--primary" href="#registrar">➕ Registrar compra</a>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- 1) HERO / MINI GOOGLE -->
+    <section class="card card--hero" style="margin-bottom:14px;">
+      <div class="hero__left">
+        <h1 style="margin:0 0 6px;">Mini Google • Compras</h1>
+        <p style="margin:0 0 12px;" class="muted">
+          Busca por <strong>ID de compra</strong>, <strong>cliente</strong> o <strong>producto</strong>.
+          <span class="muted">(Hoy: demo visual. Luego: search-index.json)</span>
+        </p>
+
+        <div class="search">
+          <input id="qCompras" type="search" placeholder="Ej: CH-0049 / Petronila / Mary Jane..." autocomplete="off" />
+          <button class="btn btn--ghost" type="button" id="btnBuscarCompras">Buscar</button>
         </div>
-        <div class="hub-brand-txt">
-          <div class="hub-title">Compras</div>
-          <div class="hub-subtitle">Registro, seguimiento y análisis del flujo comercial Chelina</div>
+
+        <div class="hero__hint">
+          Tip: en la demo mostramos resultados simulados; después se conecta al índice JSON.
         </div>
+
+        <!-- Resultados demo -->
+        <div id="resCompras" style="margin-top:12px;"></div>
       </div>
 
-      <div class="hub-actions">
-        <a class="btn btn-ghost" href="../index.html" title="Volver al Panel Central">← Volver</a>
-        <a class="btn btn-primary" href="#registrar" title="Registrar compra">＋ Registrar compra</a>
-      </div>
-    </header>
-
-    <!-- HERO: Mini Google Compras -->
-    <section class="card card-hero">
-      <div class="hero-grid">
-        <div class="hero-main">
-          <h1 class="hero-h1">Mini Google • Compras</h1>
-          <p class="hero-p">
-            Busca por <strong>ID de compra</strong>, <strong>cliente</strong> o <strong>producto</strong>.
-            <span class="muted">(Hoy: demo visual. Luego: search-index.json)</span>
-          </p>
-
-          <div class="hero-search">
-            <input id="searchInput" class="input" type="search" placeholder="Ej: CH-0049 / Petronila / Mary Jane…" autocomplete="off" />
-            <button id="searchBtn" class="btn btn-soft" type="button">Buscar</button>
+      <div class="hero__right">
+        <div class="mini-note" style="margin-bottom:10px;">
+          <div class="mini-note__title">Objetivo del panel</div>
+          <div class="mini-note__body">
+            Ver el pulso operativo: recientes, análisis rápido, exploración por cronología y acciones.
           </div>
-
-          <div class="hero-tip muted">
-            Tip: en la demo mostramos resultados simulados; después se conecta al índice JSON.
-          </div>
-
-          <!-- Resultados demo -->
-          <div id="searchResults" class="search-results" aria-live="polite"></div>
         </div>
 
-        <aside class="hero-side">
-          <div class="mini-card">
-            <div class="mini-card-title">Objetivo del panel</div>
-            <div class="mini-card-text">
-              Ver el pulso operativo: recientes, análisis rápido, exploración por cronología y acciones.
-            </div>
+        <div class="mini-note">
+          <div class="mini-note__title">Estado del embudo (contexto)</div>
+          <div class="mini-note__body muted">
+            Aquí luego podemos mostrar totales “en caliente” (Nuevos/Conversión/Fidelizados/Inactivos).
           </div>
-
-          <div class="mini-card">
-            <div class="mini-card-title">Estado del embudo (contexto)</div>
-            <div class="mini-card-text muted">
-              Aquí luego podemos mostrar totales “en caliente” (Nuevos/Conversión/Fidelizados/Inactivos).
-            </div>
-          </div>
-        </aside>
+        </div>
       </div>
     </section>
 
-    <!-- SNAPSHOT: KPIs -->
-    <section class="card">
-      <div class="section-head">
+    <!-- 2) KPI SNAPSHOT -->
+    <section class="card" style="padding:16px; margin-bottom:14px;">
+      <div style="display:flex; align-items:end; justify-content:space-between; gap:12px; flex-wrap:wrap;">
         <div>
-          <h2 class="section-title">Estado rápido de compras</h2>
-          <div class="section-subtitle">KPIs demo (luego alimentados por dashboard.json / Registro Compra)</div>
+          <h2 style="margin:0 0 4px;">Estado rápido de compras</h2>
+          <div class="muted" style="font-size:12.5px;">KPIs demo (luego alimentados por dashboard.json / Registro Compra)</div>
         </div>
-        <div class="section-meta muted">
-          Última actualización: <span id="lastUpdate">—</span>
-        </div>
+        <div class="muted" style="font-size:12.5px;">Última actualización: —</div>
       </div>
 
-      <div class="kpi-grid">
-        <div class="kpi-card">
-          <div class="kpi-label">🛒 Compras esta semana</div>
-          <div class="kpi-value">—</div>
+      <div class="mini-kpis" style="margin-top:12px;">
+        <div class="kpi">
+          <div class="kpi__label">🛒 Compras esta semana</div>
+          <div class="kpi__value">—</div>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-label">💰 Monto total</div>
-          <div class="kpi-value">—</div>
+        <div class="kpi">
+          <div class="kpi__label">💰 Monto total</div>
+          <div class="kpi__value">—</div>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-label">🌍 País líder</div>
-          <div class="kpi-value">—</div>
+        <div class="kpi">
+          <div class="kpi__label">🌍 País líder</div>
+          <div class="kpi__value">—</div>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-label">⚡ Pago dominante</div>
-          <div class="kpi-value">—</div>
+        <div class="kpi">
+          <div class="kpi__label">⚡ Pago dominante</div>
+          <div class="kpi__value">—</div>
         </div>
       </div>
     </section>
 
-    <!-- BLOQUE PRINCIPAL -->
-    <section class="grid-2">
-      <!-- Izquierda: compras recientes -->
-      <section class="card">
-        <div class="section-head">
+    <!-- 3 + 4) BLOQUES PRINCIPALES -->
+    <section class="grid" style="grid-template-columns: 1.2fr .8fr; gap:14px;">
+
+      <!-- 3) IZQUIERDA: COMPRAS RECIENTES -->
+      <article class="card">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
           <div>
-            <h2 class="section-title">Compras recientes</h2>
-            <div class="section-subtitle">Replica tu vista “últimos 7 días”. (Hoy: demo visual)</div>
+            <h2 style="margin:0 0 4px;">Compras recientes</h2>
+            <div class="muted" style="font-size:12.5px;">
+              Replica tu vista “últimos 7 días”. <span class="muted">(Hoy: demo visual)</span>
+            </div>
           </div>
-          <span class="pill">Recientes</span>
+          <span class="tag">Recientes</span>
         </div>
 
-        <div class="list-cards" id="recentPurchases">
-          <!-- Items demo -->
-          <article class="row-card" data-id="CH-0049" data-cliente="Petronila Gómez" data-producto="Tenis Bomb">
-            <div class="row-main">
-              <div class="row-title">CH-0049 · Petronila Gómez</div>
-              <div class="row-meta muted">Producto: Tenis Bomb · Monto: $25</div>
+        <!-- Lista ligera -->
+        <div id="listaCompras" style="margin-top:12px; display:grid; gap:10px;">
+          <!-- Item 1 -->
+          <div class="card" style="padding:12px; border-radius:16px;" data-id="CH-0049" data-cliente="Petronila Gómez" data-producto="Tenis Bomb">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+              <div>
+                <div style="font-weight:850;">CH-0049 · Petronila Gómez</div>
+                <div class="muted" style="font-size:12.5px;">Producto: Tenis Bomb • Monto: $25</div>
+              </div>
+              <div style="text-align:right;">
+                <div class="tag">Binance</div>
+                <div class="muted" style="font-size:12.5px; margin-top:4px;">04 May 2025</div>
+              </div>
             </div>
-            <div class="row-side">
-              <span class="badge badge-pay">Binance</span>
-              <div class="row-date muted">04 May 2025</div>
-            </div>
-          </article>
+          </div>
 
-          <article class="row-card" data-id="CH-0048" data-cliente="María F. R." data-producto="Mary Jane Reptil">
-            <div class="row-main">
-              <div class="row-title">CH-0048 · María F. R.</div>
-              <div class="row-meta muted">Producto: Mary Jane Reptil · Monto: $40</div>
+          <!-- Item 2 -->
+          <div class="card" style="padding:12px; border-radius:16px;" data-id="CH-0048" data-cliente="María F. R." data-producto="Mary Jane Reptil">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+              <div>
+                <div style="font-weight:850;">CH-0048 · María F. R.</div>
+                <div class="muted" style="font-size:12.5px;">Producto: Mary Jane Reptil • Monto: $40</div>
+              </div>
+              <div style="text-align:right;">
+                <div class="tag">Zelle</div>
+                <div class="muted" style="font-size:12.5px; margin-top:4px;">03 May 2025</div>
+              </div>
             </div>
-            <div class="row-side">
-              <span class="badge badge-pay">Zelle</span>
-              <div class="row-date muted">03 May 2025</div>
-            </div>
-          </article>
+          </div>
 
-          <article class="row-card" data-id="CH-0047" data-cliente="Andrea P." data-producto="Mocasín Boutique">
-            <div class="row-main">
-              <div class="row-title">CH-0047 · Andrea P.</div>
-              <div class="row-meta muted">Producto: Mocasín Boutique · Monto: $35</div>
+          <!-- Item 3 -->
+          <div class="card" style="padding:12px; border-radius:16px;" data-id="CH-0047" data-cliente="Andrea P." data-producto="Mocasín Boutique">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+              <div>
+                <div style="font-weight:850;">CH-0047 · Andrea P.</div>
+                <div class="muted" style="font-size:12.5px;">Producto: Mocasín Boutique • Monto: $35</div>
+              </div>
+              <div style="text-align:right;">
+                <div class="tag">Pago Móvil</div>
+                <div class="muted" style="font-size:12.5px; margin-top:4px;">29 Abr 2025</div>
+              </div>
             </div>
-            <div class="row-side">
-              <span class="badge badge-pay">Pago Móvil</span>
-              <div class="row-date muted">29 Abr 2025</div>
-            </div>
-          </article>
+          </div>
         </div>
 
-        <div class="section-footer">
-          <div class="muted">Click → detalle (futuro). Hoy: demo / placeholder.</div>
-          <button class="btn btn-soft" id="verMasBtn" type="button">Ver más</button>
+        <div class="card__footer" style="margin-top:14px;">
+          <span class="muted">Click → detalle (futuro). Hoy: demo / placeholder.</span>
+          <a class="btn btn--secondary" href="#" id="btnVerMasCompras">Ver más</a>
         </div>
-      </section>
+      </article>
 
-      <!-- Derecha: cronología + comparativas -->
-      <aside class="stack">
-        <section class="card">
-          <div class="section-head">
-            <div>
-              <h2 class="section-title">Explorar por período</h2>
-              <div class="section-subtitle">Tu cronología de carpetas traducida a UI</div>
-            </div>
-            <span class="pill">Cronología</span>
+      <!-- 4) DERECHA: EXPLORAR -->
+      <aside style="display:grid; gap:14px;">
+
+        <!-- 4A) Por periodo -->
+        <article class="card">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+            <h2 style="margin:0;">Explorar por periodo</h2>
+            <span class="tag">Cronología</span>
           </div>
 
-          <div class="split-box">
-            <div class="split">
-              <div class="split-title">📆 Por mes</div>
-              <a class="split-link" href="#" data-toast="Abril 2025 (demo)">Abril 2025</a>
-              <a class="split-link" href="#" data-toast="Marzo 2025 (demo)">Marzo 2025</a>
-              <a class="split-link" href="#" data-toast="Febrero 2025 (demo)">Febrero 2025</a>
+          <div style="margin-top:12px; display:grid; gap:12px;">
+            <div class="card" style="padding:12px; border-radius:16px;">
+              <div style="font-weight:850;">📆 Por mes</div>
+              <ul class="list" style="margin-top:8px;">
+                <li><a href="#" data-toast="Abril 2025 (demo)">Abril 2025</a></li>
+                <li><a href="#" data-toast="Marzo 2025 (demo)">Marzo 2025</a></li>
+                <li><a href="#" data-toast="Febrero 2025 (demo)">Febrero 2025</a></li>
+              </ul>
             </div>
 
-            <div class="split">
-              <div class="split-title">📦 Por semana</div>
-              <a class="split-link" href="#" data-toast="Semana 18 · 2025 (demo)">Semana 18 · 2025</a>
-              <a class="split-link" href="#" data-toast="Semana 17 · 2025 (demo)">Semana 17 · 2025</a>
-              <a class="split-link" href="#" data-toast="Semana 16 · 2025 (demo)">Semana 16 · 2025</a>
+            <div class="card" style="padding:12px; border-radius:16px;">
+              <div style="font-weight:850;">🗂️ Por semana</div>
+              <ul class="list" style="margin-top:8px;">
+                <li><a href="#" data-toast="Semana 18 · 2025 (demo)">Semana 18 · 2025</a></li>
+                <li><a href="#" data-toast="Semana 17 · 2025 (demo)">Semana 17 · 2025</a></li>
+                <li><a href="#" data-toast="Semana 16 · 2025 (demo)">Semana 16 · 2025</a></li>
+              </ul>
             </div>
           </div>
-        </section>
+        </article>
 
-        <section class="card">
-          <div class="section-head">
-            <div>
-              <h2 class="section-title">Resumen comparativo (7 días)</h2>
-              <div class="section-subtitle">Mini panel por país / pago (luego data real)</div>
-            </div>
-            <span class="pill">Insights</span>
+        <!-- 4B) Resumen comparativo -->
+        <article class="card">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+            <h2 style="margin:0;">Resumen comparativo (7 días)</h2>
+            <span class="tag">Insights</span>
+          </div>
+          <div class="muted" style="font-size:12.5px; margin-top:6px;">
+            Mini panel por país / pago (luego data real).
           </div>
 
-          <div class="mini-table">
-            <div class="mini-row">
-              <div class="mini-left">🇻🇪 Venezuela</div>
-              <div class="mini-right muted">— compras</div>
+          <div style="margin-top:12px; display:grid; gap:10px;">
+            <div class="card" style="padding:12px; border-radius:16px;">
+              <div style="display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+                <strong>🇻🇪 Venezuela</strong>
+                <span class="muted">— compras</span>
+              </div>
             </div>
-            <div class="mini-row">
-              <div class="mini-left">🇨🇴 Colombia</div>
-              <div class="mini-right muted">— compras</div>
+
+            <div class="card" style="padding:12px; border-radius:16px;">
+              <div style="display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+                <strong>🇨🇴 Colombia</strong>
+                <span class="muted">— compras</span>
+              </div>
             </div>
-            <div class="mini-row">
-              <div class="mini-left">⚡ Método top</div>
-              <div class="mini-right muted">—</div>
+
+            <div class="card" style="padding:12px; border-radius:16px;">
+              <div style="display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+                <strong>⚡ Método top</strong>
+                <span class="muted">—</span>
+              </div>
             </div>
           </div>
 
-          <div class="muted" style="margin-top:10px">
+          <div class="muted" style="font-size:12.5px; margin-top:12px;">
             Nota: el “comparativo por país” vive perfecto aquí; los rankings más pesados van en Reportes.
           </div>
-        </section>
+        </article>
+
       </aside>
     </section>
 
-    <!-- BLOQUE INFERIOR -->
-    <section class="grid-2">
-      <section class="card" id="registrar">
-        <div class="section-head">
-          <div>
-            <h2 class="section-title">Acciones</h2>
-            <div class="section-subtitle">Operación rápida</div>
-          </div>
-          <span class="pill">Operación</span>
+    <!-- 5) BLOQUE INFERIOR -->
+    <section class="grid" style="grid-template-columns: 1fr 1fr; gap:14px; margin-top:14px;">
+
+      <!-- 5A Acciones -->
+      <article class="card" id="registrar">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+          <h2 style="margin:0;">Acciones</h2>
+          <span class="tag">Operación</span>
         </div>
 
-        <div class="actions-grid">
-          <a class="btn btn-primary" href="#" data-toast="Registrar nueva compra (demo)">＋ Registrar nueva compra</a>
-          <a class="btn btn-soft" href="#" data-toast="Exportar compras (futuro)">📤 Exportar compras (futuro)</a>
-          <a class="btn btn-soft" href="./reportes.html" title="Ir a reportes">📊 Ver reportes detallados</a>
+        <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn btn--primary" href="#" id="btnRegistrarCompra">➕ Registrar nueva compra</a>
+          <a class="btn btn--secondary" href="#" id="btnExportarCompras">📤 Exportar compras (futuro)</a>
+          <a class="btn btn--ghost" href="./reportes.html">📊 Ver reportes detallados</a>
         </div>
 
-        <div class="muted" style="margin-top:10px">
+        <div class="muted" style="font-size:12.5px; margin-top:12px;">
           Exportación y reportes se conectarán a Drive/Sheets sin duplicar archivos.
         </div>
-      </section>
+      </article>
 
-      <section class="card">
-        <div class="section-head">
-          <div>
-            <h2 class="section-title">Tips de uso</h2>
-            <div class="section-subtitle">Soporte operativo</div>
-          </div>
-          <span class="pill">Soporte</span>
+      <!-- 5B Tips -->
+      <article class="card">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+          <h2 style="margin:0;">Tips de uso</h2>
+          <span class="tag">Soporte</span>
         </div>
 
-        <ul class="tips">
+        <ul class="list" style="margin-top:12px;">
           <li>Revisa siempre <strong>método de pago</strong> y <strong>monto</strong> antes de cerrar semana.</li>
           <li>Usa “Explorar por semana” para evitar duplicados y mantener el criterio del CRM.</li>
           <li>Si una compra requiere gestión extra, márcala como “Por enviar” (fase futura).</li>
         </ul>
 
-        <div class="muted">
+        <div class="muted" style="font-size:12.5px; margin-top:12px;">
           Reduce fricción para el equipo y mantiene el criterio operativo claro.
         </div>
-      </section>
+      </article>
+
     </section>
 
-    <footer class="hub-footer muted">
-      Chelina Hub Web · Compras — Demo visual estilo Freepik (listas ligeras + cards)
+    <footer class="footer" style="margin-top:18px;">
+      <span class="muted">Chelina Hub Web • Compras</span>
+      <span class="muted">—</span>
+      <span class="muted">Demo visual estilo Freepik (listas ligeras + cards)</span>
     </footer>
   </main>
 
-  <!-- Toast simple -->
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
-
+  <!-- JS mínimo demo (igual filosofía que Clientes) -->
   <script>
-    // ===== Utilidades UI =====
-    const toastEl = document.getElementById('toast');
-    function toast(msg) {
-      toastEl.textContent = msg;
-      toastEl.classList.add('show');
-      clearTimeout(window.__toastTimer);
-      window.__toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2200);
-    }
+    const toast = (msg) => alert(msg);
 
-    // Links demo con toast
-    document.querySelectorAll('[data-toast]').forEach(el => {
-      el.addEventListener('click', (e) => {
-        e.preventDefault();
-        toast(el.getAttribute('data-toast'));
-      });
-    });
+    // Buscar (demo)
+    document.getElementById("btnBuscarCompras")?.addEventListener("click", () => {
+      const q = (document.getElementById("qCompras")?.value || "").trim().toLowerCase();
+      if (!q) return toast("Escribe un ID, cliente o producto para buscar 🙂");
 
-    // ===== Mini Google (demo) =====
-    const input = document.getElementById('searchInput');
-    const btn = document.getElementById('searchBtn');
-    const results = document.getElementById('searchResults');
-
-    function runSearch() {
-      const q = (input.value || '').trim().toLowerCase();
-      results.innerHTML = '';
-      if (!q) { toast('Escribe algo para buscar.'); return; }
-
-      const cards = Array.from(document.querySelectorAll('#recentPurchases .row-card'));
+      const cards = Array.from(document.querySelectorAll("#listaCompras [data-id]"));
       const hits = cards.filter(c => {
-        const id = (c.dataset.id || '').toLowerCase();
-        const cli = (c.dataset.cliente || '').toLowerCase();
-        const pro = (c.dataset.producto || '').toLowerCase();
+        const id = (c.dataset.id || "").toLowerCase();
+        const cli = (c.dataset.cliente || "").toLowerCase();
+        const pro = (c.dataset.producto || "").toLowerCase();
         return id.includes(q) || cli.includes(q) || pro.includes(q);
       });
 
-      const wrap = document.createElement('div');
-      wrap.className = 'search-wrap';
+      const box = document.getElementById("resCompras");
+      box.innerHTML = "";
 
-      const title = document.createElement('div');
-      title.className = 'search-title';
-      title.textContent = `Resultados (demo): ${hits.length}`;
-      wrap.appendChild(title);
+      const info = document.createElement("div");
+      info.className = "muted";
+      info.style.fontSize = "12.5px";
+      info.style.marginTop = "10px";
+      info.textContent = `Resultados (demo): ${hits.length}`;
+      box.appendChild(info);
 
       if (!hits.length) {
-        const empty = document.createElement('div');
-        empty.className = 'search-empty muted';
-        empty.textContent = 'Sin resultados en la demo. (Luego se conecta a search-index.json)';
-        wrap.appendChild(empty);
-      } else {
-        hits.slice(0, 6).forEach(h => {
-          const row = document.createElement('button');
-          row.className = 'search-row';
-          row.type = 'button';
-          row.innerHTML = `
-            <span class="search-id">${h.dataset.id}</span>
-            <span class="search-txt muted">${h.dataset.cliente} · ${h.dataset.producto}</span>
-          `;
-          row.addEventListener('click', () => toast(\`Abrir compra \${h.dataset.id} (placeholder)\`));
-          wrap.appendChild(row);
-        });
+        const empty = document.createElement("div");
+        empty.className = "muted";
+        empty.style.marginTop = "8px";
+        empty.textContent = "Sin resultados en la demo. (Luego se conecta a search-index.json)";
+        box.appendChild(empty);
+        return;
       }
 
-      results.appendChild(wrap);
-    }
+      const list = document.createElement("div");
+      list.style.display = "grid";
+      list.style.gap = "10px";
+      list.style.marginTop = "10px";
 
-    btn.addEventListener('click', runSearch);
-    input.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') runSearch();
+      hits.slice(0, 6).forEach(h => {
+        const item = document.createElement("a");
+        item.href = "#";
+        item.className = "card";
+        item.style.padding = "12px";
+        item.style.borderRadius = "16px";
+        item.style.display = "block";
+        item.innerHTML = `
+          <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;">
+            <strong>${h.dataset.id}</strong>
+            <span class="muted">${h.dataset.cliente}</span>
+          </div>
+          <div class="muted" style="font-size:12.5px;margin-top:4px;">${h.dataset.producto}</div>
+        `;
+        item.addEventListener("click", (e) => {
+          e.preventDefault();
+          toast(`Demo: abrir compra ${h.dataset.id} (placeholder)`);
+        });
+        list.appendChild(item);
+      });
+
+      box.appendChild(list);
     });
 
-    document.getElementById('verMasBtn').addEventListener('click', () => {
-      toast('Cargar más compras (demo). Luego: paginación desde JSON/Sheet.');
+    // Ver más (demo)
+    document.getElementById("btnVerMasCompras")?.addEventListener("click", (e) => {
+      e.preventDefault();
+      toast("Demo: ver más compras (luego paginación desde JSON/Sheet).");
     });
 
-    document.getElementById('lastUpdate').textContent = '—';
+    // Acciones (demo)
+    document.getElementById("btnRegistrarCompra")?.addEventListener("click", (e) => {
+      e.preventDefault();
+      toast("Demo: abrir formulario Registrar Compra.");
+    });
+
+    document.getElementById("btnExportarCompras")?.addEventListener("click", (e) => {
+      e.preventDefault();
+      toast("Demo: exportar compras (futuro).");
+    });
+
+    // Links demo con data-toast
+    document.querySelectorAll("[data-toast]")?.forEach(a => {
+      a.addEventListener("click", (e) => {
+        e.preventDefault();
+        toast(a.getAttribute("data-toast"));
+      });
+    });
   </script>
 </body>
 </html>
